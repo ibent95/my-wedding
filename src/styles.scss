@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Default Variables Configs
+ */
+
+:root {
+	--primary-color: #181C14;
+	--secondary-color: #3C3D37;
+	--third-color: #697565;
+	--fourth-color: #ECDFCC;
+
+	--light-primary-color: var(--primary-color);
+	--light-secondary-color: var(--secondary-color);
+	--light-background-color: floralwhite;
+
+	--dark-primary-color: var(--secondary-color);
+	--dark-secondary-color: var(--fourth-color);
+	--dark-background-color: var(--primary-color);
+
+	--background-color: var(--dark-background-color);
+	--forground-color: var(--dark-secondary-color);
+}
+
+/**
+ * Default Styles Configs
+ */
+
+body { background-color: var(--background-color); color: var(--forground-color); }
+
+header { border: solid var(--fourth-color); }
+
+main { min-height: 82vh; section { min-width: 98.8vw; } }
+
+footer { background-color: var(--secondary-color); color: var(--primary-color); min-height: 12vh; }
+
+table {
+	width: max-content;
+	border: thick double var(--fourth-color);
+	border-radius: 0.2rem;
+
+	th, td {
+		border: thick double var(--fourth-color);
+		border-radius: 0.2rem;
+
+		padding: 1rem;
+	}
+}
+
+.primary-color { background-color: var(--primary-color); color: var(--fourth-color); }
+
+.secondary-color { background-color: var(--secondary-color); color: var(--fourth-color); }
+
+.third-color { background-color: var(--third-color); color: var(--fourth-color); }
+
+.fourth-color { background-color: var(--fourth-color); color: var(--secondary-color); }
+
+.custom-container { margin: auto 5vh auto; }
+
+/**
+ * Dark Theme Configs
+ */
+
+.dark-theme {
+
+	--primary-color: #181C14;
+	--secondary-color: #3C3D37;
+	--third-color: #697565;
+	--fourth-color: #ECDFCC;
+
+	background-color: var(--dark-background-color);
+	color: var(--dark-secondary-color);
+
+	.primary-color { background-color: var(--primary-color); color: var(--fourth-color); }
+
+	.secondary-color { background-color: var(--secondary-color); color: var(--fourth-color); }
+
+	.third-color { background-color: var(--third-color); color: var(--fourth-color); }
+
+	.fourth-color { background-color: var(--fourth-color); color: var(--secondary-color); }
+
+	footer { background-color: var(--secondary-color); color: var(--primary-color); }
+
+}
+/**
+ * Light Theme Configs
+ */
+
+.light-theme {
+
+	--primary-color: #ECDFCC;
+	--secondary-color: #697565;
+	--third-color: #3C3D37;
+	--fourth-color: #181C14;
+
+	background-color: var(--light-background-color);
+	color: var(--light-secondary-color);
+
+	.primary-color { background-color: var(--primary-color); color: var(--fourth-color); }
+
+	.secondary-color { background-color: var(--secondary-color); color: var(--fourth-color); }
+
+	.third-color { background-color: var(--third-color); color: var(--fourth-color); }
+
+	.fourth-color { background-color: var(--fourth-color); color: var(--secondary-color); }
+
+	footer {
+		background-color: var(--secondary-color); color: var(--primary-color);
+	}
+
+}
