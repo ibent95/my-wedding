@@ -11,22 +11,54 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ CommonModule, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent ],
   template: `
-    <main class="flex flex-col justify-center items-center gap-4">
+    <main class="flex flex-col justify-center items-center">
 
-      <app-opening-remarks></app-opening-remarks>
+      <app-opening-remarks [id]="ids[0]"></app-opening-remarks>
 
-      <app-wise-words-or-prayer></app-wise-words-or-prayer>
+      <div class="flex items-center justify-center">
+        <a class="" [href]="'#' + ids[1]">
+          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+        </a>
+      </div>
 
-      <app-invitation-details></app-invitation-details>
+      <app-wise-words-or-prayer [id]="ids[1]"></app-wise-words-or-prayer>
 
-      <app-wishes-and-hopes></app-wishes-and-hopes>
+      <div class="flex items-center justify-center">
+        <a class="" [href]="'#' + ids[2]">
+          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+        </a>
+      </div>
 
-      <app-closing-remarks></app-closing-remarks>
+      <app-invitation-details [id]="ids[2]"></app-invitation-details>
+
+      <div class="flex items-center justify-center">
+        <a class="" [href]="'#' + ids[3]">
+          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+        </a>
+      </div>
+
+      <app-wishes-and-hopes [id]="ids[3]"></app-wishes-and-hopes>
+
+      <div class="flex items-center justify-center">
+        <a class="" [href]="'#' + ids[4]">
+          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+        </a>
+      </div>
+
+      <app-closing-remarks [id]="ids[4]"></app-closing-remarks>
 
     </main>
   `,
   styles: []
 })
 export class MainComponent {
+
+  ids: Array<string> = [
+    'openingRemarks',
+    'wiseWordsOrPrayer',
+    'invitationDetails',
+    'wishesAndHopes',
+    'closingRemarks',
+  ];
 
 }

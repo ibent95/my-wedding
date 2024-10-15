@@ -1,42 +1,57 @@
-<section class="flex flex-col justify-center min-h-screen" id="invitationDetails">
+<section class="flex flex-col justify-center" [id]="id">
 
 	<p class="text-center">Yang akan dilaksanakan pada:</p> <br>
 
-	<table class="border border-separate rounded-4 self-center">
-		<!--<thead><th></th></thead>-->
+	<table class="table-fixed self-center mx-2 mb-2">
+		<thead>
+			<tr>
+				<th colspan="3">Akad nikah</th>
+			</tr>
+		</thead>
+
 		<tbody>
+
 			<tr>
-				<td class="border text-center" colspan="3">Akad nikah</td>
+				<td>Hari, tanggal & waktu</td>
+				<td>&nbsp;:&nbsp;</td>
+				<td class="font-bold">Senin, 02 Desember 2024</td>
 			</tr>
 
 			<tr>
-				<td class="border">Hari, tanggal & waktu</td>
-				<td class="border">&nbsp;:&nbsp;</td>
-				<td class="border">Senin, 02 Desember 2024</td>
-			</tr>
-			<tr>
-				<td class="border">Alamat beserta Maps</td>
-				<td class="border">&nbsp;:&nbsp;</td>
-				<td class="border">Candiroto, Temanggung, Jawa Tengah</td>
-			</tr>
-
-			<tr>
-				<td class="border text-center" colspan="3">Resepsi</td>
-			</tr>
-
-			<tr>
-				<td class="border">Hari, tanggal & waktu</td>
-				<td class="border">&nbsp;:&nbsp;</td>
-				<td class="border">Senin, 02 Desember 2024</td>
-			</tr>
-			<tr>
-				<td class="border">Alamat beserta Maps</td>
-				<td class="border">&nbsp;:&nbsp;</td>
-				<td class="border">Candiroto, Temanggung, Jawa Tengah</td>
+				<td>Alamat beserta Maps</td>
+				<td>&nbsp;:&nbsp;</td>
+				<td class="font-bold">
+					<a class="underline decoration-dotted" href="https://maps.app.goo.gl/EfNc5raPkmRWHNGY8" target="_blank" rel="noopener noreferrer">
+						Desa Batursari, Kecamatan Candiroto, Kabupaten Temanggung, Provinsi Jawa Tengah
+					</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<br>
+	<table class="table-fixed self-center mx-2">
+		<thead>
+			<tr>
+				<th colspan="3">Resepsi</th>
+			</tr>
+		</thead>
 
+		<tbody>
+			<tr>
+				<td>Hari, tanggal & waktu</td>
+				<td>:</td>
+				<td class="font-bold">Senin, 02 Desember 2024</td>
+			</tr>
+
+			<tr>
+				<td>Alamat beserta Maps</td>
+				<td>:</td>
+				<td class="font-bold">
+					<a class="underline decoration-dotted" href="https://maps.app.goo.gl/EfNc5raPkmRWHNGY8" target="_blank" rel="noopener noreferrer">
+						Desa Batursari, Kecamatan Candiroto, Kabupaten Temanggung, Provinsi Jawa Tengah
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </section>

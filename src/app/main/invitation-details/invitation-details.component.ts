@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-invitation-details',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class InvitationDetailsComponent {
-
+  @Input() id: string = 'invitationDetails';
 }

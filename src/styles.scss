@@ -32,20 +32,27 @@ body { background-color: var(--background-color); color: var(--forground-color);
 
 header { border: solid var(--fourth-color); }
 
-main { min-height: 82vh; section { min-width: 98.8vw; } }
+//main { min-width: 80vw; }
 
-footer { background-color: var(--secondary-color); color: var(--primary-color); min-height: 12vh; }
+section { min-height: 93vh; }
+
+footer { background-color: var(--secondary-color); color: var(--primary-color); min-height: 14vh; }
 
 table {
-	width: max-content;
-	border: thick double var(--fourth-color);
-	border-radius: 0.2rem;
 
 	th, td {
-		border: thick double var(--fourth-color);
+		padding: 0.5rem;
+	}
+
+	&.primary-table {
+		//width: max-content;
+		border: thin solid var(--fourth-color);
 		border-radius: 0.2rem;
 
-		padding: 1rem;
+		th, td {
+			border: thin solid var(--fourth-color);
+			border-radius: 0.2rem;
+		}
 	}
 }
 
