@@ -5,11 +5,12 @@ import { InvitationDetailsComponent } from './invitation-details/invitation-deta
 import { WishesAndHopesComponent } from './wishes-and-hopes/wishes-and-hopes.component';
 import { ClosingRemarksComponent } from './closing-remarks/closing-remarks.component';
 import { CommonModule } from '@angular/common';
+import { IconComponent } from '../shared/icon/icon.component';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ CommonModule, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent ],
+  imports: [ CommonModule, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent, IconComponent ],
   template: `
     <main class="flex flex-col justify-center items-center">
 
@@ -17,7 +18,8 @@ import { CommonModule } from '@angular/common';
 
       <div class="flex items-center justify-center">
         <a class="" [href]="'#' + ids[1]">
-          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+          <i class="antialiased text-4xl" aria-label="Navigate down"></i>
+          <app-icon name="chevrons-down" [size]="45" color="third"></app-icon>
         </a>
       </div>
 
@@ -25,7 +27,7 @@ import { CommonModule } from '@angular/common';
 
       <div class="flex items-center justify-center">
         <a class="" [href]="'#' + ids[2]">
-          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+          <app-icon name="chevrons-down" [size]="45" color="third"></app-icon>
         </a>
       </div>
 
@@ -33,7 +35,7 @@ import { CommonModule } from '@angular/common';
 
       <div class="flex items-center justify-center">
         <a class="" [href]="'#' + ids[3]">
-          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+          <app-icon name="chevrons-down" [size]="45" color="third"></app-icon>
         </a>
       </div>
 
@@ -41,7 +43,7 @@ import { CommonModule } from '@angular/common';
 
       <div class="flex items-center justify-center">
         <a class="" [href]="'#' + ids[4]">
-          <i class="antialiased text-4xl" aria-label="Navigate down">&darr;</i>
+          <app-icon name="chevrons-down" [size]="45" color="third"></app-icon>
         </a>
       </div>
 
