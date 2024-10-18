@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=League+Spartan:wght@600&display=swap');
+
 /**
  * Default Variables Configs
  */
@@ -27,12 +29,22 @@
 /**
  * Default Styles Configs
  */
+html, body {
+	font-family: "League Spartan", sans-serif;
+	font-optical-sizing: auto;
+}
 
 body { background-color: var(--background-color); color: var(--forground-color); }
 
 header { border: solid var(--fourth-color); }
 
 //main { min-width: 80vw; }
+.dancing-script-font {
+	font-family: "Dancing Script", cursive;
+	font-optical-sizing: auto;
+	font-weight: 600;
+	font-style: normal;
+}
 
 section { min-height: 100vh; }
 
