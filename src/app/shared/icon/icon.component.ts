@@ -3,6 +3,9 @@ import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, in
 
 export type AppIconName =
   'copy-alt' |
+  'up-arrow-alt' |
+  'up-arrow-circle' |
+  'chevrons-up' |
   'down-arrow-alt' |
   'down-arrow-circle' |
   'chevrons-down' |
@@ -20,7 +23,7 @@ export type AppIconColor = 'primary' | 'secondary' | 'third' | 'fourth';
   styles: ['']
 })
 export class IconComponent implements OnInit {
-  @Input() name!: AppIconName;
+  @Input('app-name') name!: AppIconName;
   @Input() size: number = 24;
   @Input() color!: AppIconColor | string;
   @Input() ariaLabel!: string;
