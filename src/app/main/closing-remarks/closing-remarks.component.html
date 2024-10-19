@@ -21,16 +21,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td class="border">Bank Syariah Indonesia (BSI)</td>
-				<td class="border">IBNU ROHAN TUHAREA</td>
-				<td class="border text-wrap font-bold">7154990199</td>
-			</tr>
-			<tr>
-				<td class="border">Bank Central Asia (BCA)</td>
-				<td class="border">Ardiana Navila Yulfa</td>
-				<td class="border text-wrap font-bold">8465817646</td>
-			</tr>
+			@for (bankAccount of bankAccounts; track bankAccount.bankAccountNumber; let bankAccountIndex = $index;) {
+				<tr>
+					<td class="border" [innerHTML]="bankAccount.bankName"></td>
+					<td class="border" [innerHTML]="bankAccount.bankAccountName"></td>
+					<td class="border text-wrap font-bold">
+						{{ bankAccount.bankAccountNumber }}
+						<button type="button" role="button" class="" (click)="onCopyToClipboardClick(bankAccount.bankAccountNumber)">
+							<app-icon name="copy-alt" color="fourth"></app-icon>
+						</button>
+					</td>
+				</tr>
+			}
 		</tbody>
 	</table>
 

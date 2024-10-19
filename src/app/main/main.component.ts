@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
 import { OpeningRemarksComponent } from './opening-remarks/opening-remarks.component';
 import { WiseWordsOrPrayerComponent } from './wise-words-or-prayer/wise-words-or-prayer.component';
 import { InvitationDetailsComponent } from './invitation-details/invitation-details.component';
@@ -6,42 +6,43 @@ import { WishesAndHopesComponent } from './wishes-and-hopes/wishes-and-hopes.com
 import { ClosingRemarksComponent } from './closing-remarks/closing-remarks.component';
 import { CommonModule } from '@angular/common';
 import { AppIconName, IconComponent } from '../shared/icon/icon.component';
-import { debounceTime, fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   imports: [ CommonModule, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent, IconComponent ],
   template: `
-    <main class="flex flex-col justify-center items-center snap-scroller">
+    <main class="flex flex-col justify-center items-center snap-mandatory snap-y">
 
-      <div #openingRemarks>
-        <app-opening-remarks [id]="ids[0]"></app-opening-remarks>
+      <div class="snap-always snap-start" #openingRemarks>
+        <app-opening-remarks [id]="ids[0]" [weddingDate]="weddingDate"></app-opening-remarks>
       </div>
 
-      <div #wiseWordsOrPrayer>
+      <div class="snap-always snap-start" #wiseWordsOrPrayer>
         <app-wise-words-or-prayer [id]="ids[1]"></app-wise-words-or-prayer>
       </div>
 
-      <div #invitationDetails>
-        <app-invitation-details [id]="ids[2]"></app-invitation-details>
+      <div class="snap-always snap-start" #invitationDetails>
+        <app-invitation-details [id]="ids[2]" [weddingDate]="weddingDate" [weddingAddress]="weddingAddress" [weddingMapRouteLink]="weddingMapRouteLink"></app-invitation-details>
       </div>
 
-      <div #wishesAndHopes>
+      <div class="snap-always snap-start" #wishesAndHopes>
         <app-wishes-and-hopes [id]="ids[3]"></app-wishes-and-hopes>
       </div>
 
-      <div #closingRemarks>
+      <div class="snap-always snap-start" #closingRemarks>
         <app-closing-remarks [id]="ids[4]"></app-closing-remarks>
       </div>
 
-      <div class="fixed bottom-4">
+      <!-- Scroller section -->
+      <div class="fixed bottom-4 z-50">
 
         <div class="relative" [ngClass]="(this.showScrollerButton === true) ? 'scale-in' : 'scale-out'">
 
-          <a class="cursor-pointer" (click)="scrollToNextContent()">
-            <app-icon [app-name]="appIconName" [size]="45" color="third"></app-icon>
-          </a>
+          <!-- Scroller Button -->
+          <button type="button" role="button" class="animate-bounce secondary-text-color invert" (click)="scrollToNextContent()">
+            <app-icon [name]="appIconName" [size]="45" color="secondary"></app-icon>
+          </button>
 
         </div>
 
@@ -76,6 +77,11 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   appIconName: AppIconName = 'chevrons-down';
 
   intersectionObserver!: IntersectionObserver;
+
+  // Wedding data
+  weddingDate: Date = new Date('2024-12-2');
+  weddingAddress: string = 'Desa Batursari, Kecamatan Candiroto, Kabupaten Temanggung, Provinsi Jawa Tengah';
+  weddingMapRouteLink: string = 'https://maps.app.goo.gl/GbT94BjrzM8ggH5k9'; // 'https://maps.app.goo.gl/KNkUykG7v9uLY7B19?g_st=aw';
 
   ngAfterViewInit(): void {
     this.observeIntersections();

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 
 export type AppIconName =
   'copy-alt' |
@@ -10,7 +10,10 @@ export type AppIconName =
   'down-arrow-circle' |
   'chevrons-down' |
   'map' |
-  'map-alt'
+  'map-alt' |
+  'copy' |
+  'copy-alt' |
+  'copy-alt-solid'
 ;
 
 export type AppIconColor = 'primary' | 'secondary' | 'third' | 'fourth';
@@ -23,7 +26,8 @@ export type AppIconColor = 'primary' | 'secondary' | 'third' | 'fourth';
   styles: ['']
 })
 export class IconComponent implements OnInit {
-  @Input('app-name') name!: AppIconName;
+  @Input() name!: AppIconName;
+  @Input() class!: string;
   @Input() size: number = 24;
   @Input() color!: AppIconColor | string;
   @Input() ariaLabel!: string;

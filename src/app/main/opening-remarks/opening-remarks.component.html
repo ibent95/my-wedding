@@ -1,15 +1,21 @@
-<section class="custom-border flex flex-col justify-between bg-[url('/assets/images/img-1.webp')] bg-no-repeat bg-cover bg-center bg-origin-border bg-clip-padding saturate-50" [id]="id">
+<section class="custom-border relative h-screen flex flex-col justify-around items-center bg-[url('/assets/images/img-1.webp')] bg-no-repeat bg-cover bg-center bg-origin-border bg-clip-padding" [id]="id">
 
-	<div class="grow flex flex-col items-center justify-center">
-		<span class="font-semibold text-2xl italic tracking-wide antialiased text-white text-center dancing-script-font">
+	<!-- Overlay for brightness and opacity effect -->
+	<div class="absolute inset-0 bg-black opacity-50 brightness-50"></div>
+
+	<!-- Foreground content (text) centered and spaced evenly -->
+	<div class="relative z-10 flex flex-col justify-around h-full">
+		<span class="font-semibold text-2xl italic tracking-wide primary-text-color text-center dancing-script-font">
 			Undangan Pernikahan
 		</span>
 
-		<br>
-
-		<h1 class="font-semibold text-6xl italic tracking-wide antialiased text-white text-center dancing-script-font">
+		<h1 class="font-semibold text-8xl italic tracking-wide primary-text-color text-center dancing-script-font">
 			Dina & Ibnu
 		</h1>
+
+		<span class="font-semibold text-2xl italic tracking-wide primary-text-color text-center dancing-script-font">
+			{{ weddingDate | date: 'fullDate' }}
+		</span>
 	</div>
 
 </section>

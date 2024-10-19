@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=League+Spartan:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 /**
  * Default Variables Configs
@@ -29,9 +29,12 @@
 /**
  * Default Styles Configs
  */
+
 html, body {
-	font-family: "League Spartan", sans-serif;
+	font-family: "Mulish", sans-serif;
 	font-optical-sizing: auto;
+	font-weight: normal;
+	font-style: normal;
 }
 
 body { background-color: var(--background-color); color: var(--forground-color); }
@@ -39,11 +42,10 @@ body { background-color: var(--background-color); color: var(--forground-color);
 header { border: solid var(--fourth-color); }
 
 //main { min-width: 80vw; }
+
 .dancing-script-font {
 	font-family: "Dancing Script", cursive;
 	font-optical-sizing: auto;
-	font-weight: 600;
-	font-style: normal;
 }
 
 section { min-height: 100vh; }
@@ -77,6 +79,14 @@ table {
 .fourth-color { background-color: var(--fourth-color); color: var(--secondary-color); }
 
 .custom-container { margin: auto 5vh auto; }
+
+.primary-text-color { color: var(--primary-color); }
+
+.secondary-text-color { color: var(--secondary-color); }
+
+.third-text-color { color: var(--third-color); }
+
+.fourth-text-color { color: var(--fourth-color); }
 
 /**
  * Dark Theme Configs
