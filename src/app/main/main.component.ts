@@ -14,24 +14,24 @@ import { AppIconName, IconComponent } from '../shared/icon/icon.component';
   template: `
     <main class="flex flex-col justify-center items-center snap-mandatory snap-y">
 
-      <div class="snap-always snap-start" #openingRemarks>
-        <app-opening-remarks [id]="ids[0]" [weddingDate]="weddingDate"></app-opening-remarks>
+      <div class="snap-always snap-start" [id]="ids[0]" #openingRemarks>
+        <app-opening-remarks [id]="ids[0] + 'Section'" [weddingDate]="weddingDate"></app-opening-remarks>
       </div>
 
-      <div class="snap-always snap-start" #wiseWordsOrPrayer>
-        <app-wise-words-or-prayer [id]="ids[1]"></app-wise-words-or-prayer>
+      <div class="snap-always snap-start" [id]="ids[1]" #wiseWordsOrPrayer>
+        <app-wise-words-or-prayer [id]="ids[1] + 'Section'"></app-wise-words-or-prayer>
       </div>
 
-      <div class="snap-always snap-start" #invitationDetails>
-        <app-invitation-details [id]="ids[2]" [weddingDate]="weddingDate" [weddingAddress]="weddingAddress" [weddingMapRouteLink]="weddingMapRouteLink"></app-invitation-details>
+      <div class="snap-always snap-start" [id]="ids[2]" #invitationDetails>
+        <app-invitation-details [id]="ids[2] + 'Section'" [weddingDate]="weddingDate" [weddingAddress]="weddingAddress" [weddingMapRouteLink]="weddingMapRouteLink"></app-invitation-details>
       </div>
 
-      <div class="snap-always snap-start" #wishesAndHopes>
-        <app-wishes-and-hopes [id]="ids[3]"></app-wishes-and-hopes>
+      <div class="snap-always snap-start" [id]="ids[3]" #wishesAndHopes>
+        <app-wishes-and-hopes [id]="ids[3] + 'Section'"></app-wishes-and-hopes>
       </div>
 
-      <div class="snap-always snap-start" #closingRemarks>
-        <app-closing-remarks [id]="ids[4]"></app-closing-remarks>
+      <div class="snap-always snap-start" [id]="ids[4]" #closingRemarks>
+        <app-closing-remarks [id]="ids[4] + 'Section'"></app-closing-remarks>
       </div>
 
       <!-- Scroller section -->
