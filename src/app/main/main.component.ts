@@ -12,7 +12,7 @@ import { AppIconName, IconComponent } from '../shared/icon/icon.component';
   standalone: true,
   imports: [ CommonModule, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent, IconComponent ],
   template: `
-    <main class="flex flex-col justify-center items-center snap-mandatory snap-y">
+    <main class="flex flex-col justify-center justify-items-stretch items-center snap-mandatory snap-y">
 
       <div class="snap-always snap-start" [id]="ids[0]" #openingRemarks>
         <app-opening-remarks [id]="ids[0] + 'Section'" [weddingDate]="weddingDate"></app-opening-remarks>

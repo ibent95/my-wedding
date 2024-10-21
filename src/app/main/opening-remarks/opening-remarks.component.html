@@ -1,10 +1,19 @@
-<section class="relative min-h-[98vh] max-h-screen min-w-[98vw] max-w-screen h-[98vh] w-[98vw] mt-2 bg-[url('/assets/images/img-1.webp')] bg-no-repeat bg-cover bg-center bg-origin-border bg-clip-padding flex flex-col justify-around items-center" [id]="id">
+<section class="relative min-h-[98vh] max-h-screen min-w-[98vw] max-w-screen h-[98vh] w-[98vw] mt-2 p-2 bg-[url('/assets/images/img-1.webp')] bg-no-repeat bg-cover bg-center bg-origin-border bg-clip-padding -z-50 grid grid-cols-3" [id]="id">
+	<!-- flex flex-col justify-around items-center -->
 
 	<!-- Overlay for brightness and opacity effect -->
-	<div class="absolute inset-0 bg-black opacity-50 brightness-50"></div>
+	<div class="absolute inset-0 bg-black opacity-50 brightness-50 -z-40"></div>
+
+	<!-- Top -->
+	<app-ornament class="self-start justify-self-start" position="top-left" color="primary"></app-ornament>
+	<app-ornament class="self-start justify-self-center" position="top-center" color="primary"></app-ornament>
+	<app-ornament class="self-start justify-self-end" position="top-right" color="primary"></app-ornament>
+
+	<!-- Middle -->
+	<app-ornament class="self-center justify-self-start" position="middle-left" color="primary"></app-ornament>
 
 	<!-- Foreground content (text) centered and spaced evenly -->
-	<div class="relative z-10 flex flex-col justify-around h-full">
+	<div class="relative self-center flex flex-col justify-around h-full">
 		<span class="font-semibold text-2xl italic tracking-wide primary-text-color text-center dancing-script-font">
 			Undangan Pernikahan
 		</span>
@@ -17,5 +26,12 @@
 			{{ weddingDate | date: 'fullDate' }}
 		</span>
 	</div>
+
+	<app-ornament class="self-center justify-self-end" position="middle-right" color="primary"></app-ornament>
+
+	<!-- Bottom -->
+	<app-ornament class="self-end justify-self-start" position="bottom-left" color="primary"></app-ornament>
+	<app-ornament class="self-end justify-self-center" position="bottom-center" color="primary"></app-ornament>
+	<app-ornament class="self-end justify-self-end" position="bottom-right" color="primary"></app-ornament>
 
 </section>
