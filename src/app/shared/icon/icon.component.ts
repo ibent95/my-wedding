@@ -46,7 +46,11 @@ export class IconComponent implements OnInit {
       case 'secondary':
       case 'third':
       case 'fourth':
-        results = `var(--${color}-color)`;
+      case 'primary-inverse':
+      case 'secondary-inverse':
+      case 'third-inverse':
+      case 'fourth-inverse':
+        results = `var(--${color}-text-color)`;
         break;
 
       default:

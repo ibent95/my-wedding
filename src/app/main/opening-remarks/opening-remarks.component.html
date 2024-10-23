@@ -1,37 +1,43 @@
-<section class="relative min-h-[98vh] max-h-screen min-w-[98vw] max-w-screen h-[98vh] w-[98vw] mt-2 p-2 bg-bottom bg-no-repeat bg-cover bg-[url('/assets/images/img-01.webp')] bg-origin-border bg-clip-padding -z-50 grid grid-cols-3" [id]="id">
-	<!-- flex flex-col justify-around items-center -->
+<section class="relative min-h-[98vh] max-h-screen min-w-[98vw] max-w-screen h-[98vh] w-[98vw] mt-2 p-2 bg-center bg-no-repeat bg-cover bg-[url('/assets/images/img-01.webp')] bg-origin-border bg-clip-padding -z-50 grid grid-cols-3" [id]="id">
 
 	<!-- Overlay for brightness and opacity effect -->
 	<div class="absolute inset-0 bg-black opacity-50 brightness-50 -z-40"></div>
 
-	<!-- Top -->
-	<app-ornament class="relative justify-self-start self-start mobile:max-w-[25vw]" position="top-left" color="primary"></app-ornament>
+	<!-- Start Top -->
+	<app-ornament class="relative justify-self-start self-start mobile:max-w-[25vw]" position="top-left" color="fourth"></app-ornament>
+
 	<div class="relative flex flex-col justify-between">
-		<app-ornament class="justify-self-start self-center smaller:invisible mobile:max-w-[37vw]" position="top-center" color="primary"></app-ornament>
-		<span class="justify-self-end self-center dancing-script-font font-semibold text-2xl tablet:text-2xl italic text-center primary-text-color tracking-wide">
+		<app-ornament class="justify-self-start self-center smaller:invisible mobile:max-w-[37vw]" position="top-center" color="fourth"></app-ornament>
+		<span class="justify-self-end self-center dancing-script-font font-semibold text-2xl tablet:text-2xl italic text-center fourth-text-color tracking-wide">
 			Undangan Pernikahan
 		</span>
 	</div>
-	<app-ornament class="relative justify-self-end self-start mobile:max-w-[25vw]" position="top-right" color="primary"></app-ornament>
 
-	<!-- Middle -->
-	<app-ornament class="relative justify-self-start self-center mobile:max-h-[43vw]" position="middle-left" color="primary"></app-ornament>
+	<app-ornament class="relative justify-self-end self-start mobile:max-w-[25vw]" position="top-right" color="fourth"></app-ornament>
+	<!-- End Top -->
+
+	<!-- Start Middle -->
+	<app-ornament class="relative justify-self-start self-center mobile:max-h-[43vw]" position="middle-left" color="fourth"></app-ornament>
 
 	<!-- Foreground content (text) centered -->
-	<h1 class="relative justify-self-center self-center dancing-script-font font-semibold text-6xl tablet:text-8xl italic tracking-wide primary-text-color text-center">
+	<h1 class="relative justify-self-center self-center dancing-script-font font-semibold text-6xl tablet:text-8xl italic tracking-wide fourth-text-color text-center">
 		Dina & Ibnu
 	</h1>
 
-	<app-ornament class="relative justify-self-end self-center mobile:max-h-[43vw]" position="middle-right" color="primary"></app-ornament>
+	<app-ornament class="relative justify-self-end self-center mobile:max-h-[43vw]" position="middle-right" color="fourth"></app-ornament>
+	<!-- End Middle -->
 
-	<!-- Bottom -->
-	<app-ornament class="relative justify-self-start self-end mobile:max-w-[25vw]" position="bottom-left" color="primary"></app-ornament>
+	<!-- Start Bottom -->
+	<app-ornament class="relative justify-self-start self-end mobile:max-w-[25vw]" position="bottom-left" color="fourth"></app-ornament>
+
 	<div class="relative flex flex-col justify-between">
-		<span class="justify-self-start self-center dancing-script-font font-semibold text-2xl tablet:text-2xl italic text-center primary-text-color tracking-wide">
+		<span class="justify-self-start self-center dancing-script-font font-semibold text-2xl tablet:text-2xl italic text-center fourth-text-color tracking-wide">
 			{{ weddingDate | date: 'fullDate' }}
 		</span>
-		<app-ornament class="justify-self-end self-center smaller:invisible mobile:max-w-[37vw]" position="bottom-center" color="primary"></app-ornament>
+		<app-ornament class="justify-self-end self-center smaller:invisible mobile:max-w-[37vw]" position="bottom-center" color="fourth"></app-ornament>
 	</div>
-	<app-ornament class="relative justify-self-end self-end mobile:max-w-[25vw]" position="bottom-right" color="primary"></app-ornament>
+
+	<app-ornament class="relative justify-self-end self-end mobile:max-w-[25vw]" position="bottom-right" color="fourth"></app-ornament>
+	<!-- End Bottom -->
 
 </section>

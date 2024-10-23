@@ -14,6 +14,16 @@
 	--third-color: #697565;
 	--fourth-color: #ECDFCC;
 
+	--primary-text-color: var(--fourth-color);
+	--secondary-text-color: var(--third-color);
+	--third-text-color: var(--secondary-color);
+	--fourth-text-color: var(--primary-color);
+
+	--primary-inverse-text-color: var(--primary-color);
+	--secondary-inverse-text-color: var(--secondary-color);
+	--third-inverse-text-color: var(--third-color);
+	--fourth-inverse-text-color: var(--fourth-color);
+
 	--light-primary-color: var(--primary-color);
 	--light-secondary-color: var(--secondary-color);
 	--light-background-color: floralwhite;
@@ -77,13 +87,13 @@ table {
 
 .custom-container { margin: auto 5vh auto; }
 
-.primary-text-color { color: var(--primary-color); }
+.primary-text-color { color: var(--primary-text-color); }
 
-.secondary-text-color { color: var(--secondary-color); }
+.secondary-text-color { color: var(--secondary-text-color); }
 
-.third-text-color { color: var(--third-color); }
+.third-text-color { color: var(--third-text-color); }
 
-.fourth-text-color { color: var(--fourth-color); }
+.fourth-text-color { color: var(--fourth-text-color); }
 
 /**
  * Dark Theme Configs
@@ -96,6 +106,16 @@ table {
 	--third-color: #697565;
 	--fourth-color: #ECDFCC;
 
+	--primary-text-color: var(--primary-color);
+	--secondary-text-color: var(--secondary-color);
+	--third-text-color: var(--third-color);
+	--fourth-text-color: var(--fourth-color);
+
+	--primary-inverse-text-color: var(--fourth-color);
+	--secondary-inverse-text-color: var(--third-color);
+	--third-inverse-text-color: var(--secondary-color);
+	--fourth-inverse-text-color: var(--primary-color);
+
 	background-color: var(--dark-background-color);
 	color: var(--dark-secondary-color);
 
@@ -106,6 +126,14 @@ table {
 	.third-color { background-color: var(--third-color); color: var(--fourth-color); }
 
 	.fourth-color { background-color: var(--fourth-color); color: var(--secondary-color); }
+
+	.primary-text-color { color: var(--primary-text-color) !important; }
+
+	.secondary-text-color { color: var(--secondary-text-color) !important; }
+
+	.third-text-color { color: var(--third-text-color) !important; }
+
+	.fourth-text-color { color: var(--fourth-text-color) !important; }
 
 	footer { background-color: var(--secondary-color); color: var(--primary-color); }
 
@@ -121,6 +149,16 @@ table {
 	--third-color: #3C3D37;
 	--fourth-color: #181C14;
 
+	--primary-text-color: var(--fourth-color);
+	--secondary-text-color: var(--third-color);
+	--third-text-color: var(--secondary-color);
+	--fourth-text-color: var(--primary-color);
+
+	--primary-inverse-text-color: var(--fourth-color);
+	--secondary-inverse-text-color: var(--third-color);
+	--third-inverse-text-color: var(--secondary-color);
+	--fourth-inverse-text-color: var(--primary-color);
+
 	background-color: var(--light-background-color);
 	color: var(--light-secondary-color);
 
@@ -131,6 +169,14 @@ table {
 	.third-color { background-color: var(--third-color); color: var(--fourth-color); }
 
 	.fourth-color { background-color: var(--fourth-color); color: var(--secondary-color); }
+
+	.primary-text-color { color: var(--primary-text-color) !important; }
+
+	.secondary-text-color { color: var(--secondary-text-color) !important; }
+
+	.third-text-color { color: var(--third-text-color) !important; }
+
+	.fourth-text-color { color: var(--fourth-text-color) !important; }
 
 	footer {
 		background-color: var(--secondary-color); color: var(--primary-color);

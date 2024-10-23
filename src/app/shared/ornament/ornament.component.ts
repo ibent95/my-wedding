@@ -19,14 +19,23 @@ export type AppOrnamentPosition =
   'bottom-right'
 ;
 
-export type AppOrnamentColor = 'primary' | 'secondary' | 'third' | 'fourth';
+export type AppOrnamentColor =
+  'primary' |
+  'secondary' |
+  'third' |
+  'fourth' |
+  'primary-inverse' |
+  'secondary-inverse' |
+  'third-inverse' |
+  'fourth-inverse'
+;
 
 @Component({
   selector: 'app-ornament',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './ornament.component.html',
-  styles: [':ng-deep svg { min-width: 100% !important; }']
+  styles: [':ng-deep svg { min-width: 100% !important; width: auto !important; height: auto !important; }']
 })
 export class OrnamentComponent implements OnInit, AfterViewInit {
   @ViewChild('ornament', { static: true }) ornamentElement!: ElementRef;
@@ -83,14 +92,10 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
       //this.class.includes('w-') ||
       //this.class.includes('min-w-') ||
       this.class.includes('h-') ||
-      this.class.includes('min-h-')
-    ;
+      this.class.includes('min-h-');
 
-    console.log('width', this.class, this.class.includes('h-'), this.class.includes('min-h-'));
     if ((!width && height) || classWidthCondition) {
-      console.log('true');
-
-      results = 'auto';
+      results = '100%';
     }
 
     return results;
@@ -102,11 +107,10 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
       //this.class.includes('h-') ||
       //this.class.includes('min-h-') ||
       this.class.includes('w-') ||
-      this.class.includes('min-w-')
-      ;
+      this.class.includes('min-w-');
 
     if ((!height && width) || classHeightCondition) {
-      results = 'auto';
+      results = '100%';
     }
 
     return results;
@@ -120,7 +124,11 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
       case 'secondary':
       case 'third':
       case 'fourth':
-        results = `var(--${color}-color)`;
+      case 'primary-inverse':
+      case 'secondary-inverse':
+      case 'third-inverse':
+      case 'fourth-inverse':
+        results = `var(--${color}-text-color)`;
         break;
 
       default:

@@ -41,7 +41,7 @@ import { AppIconName, IconComponent } from '../shared/icon/icon.component';
 
           <!-- Scroller Button -->
           <button type="button" role="button" class="animate-bounce secondary-text-color invert" (click)="scrollToNextContent()">
-            <app-icon [name]="appIconName" [size]="45" color="secondary"></app-icon>
+            <app-icon [name]="appIconName" [size]="45" color="third-inverse"></app-icon>
           </button>
 
         </div>
