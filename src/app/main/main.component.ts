@@ -4,13 +4,14 @@ import { WiseWordsOrPrayerComponent } from './wise-words-or-prayer/wise-words-or
 import { InvitationDetailsComponent } from './invitation-details/invitation-details.component';
 import { WishesAndHopesComponent } from './wishes-and-hopes/wishes-and-hopes.component';
 import { ClosingRemarksComponent } from './closing-remarks/closing-remarks.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { AppIconName, IconComponent } from '../shared/icon/icon.component';
+import { SwitchComponent } from "../shared/switch/switch.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ CommonModule, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent, IconComponent ],
+  imports: [CommonModule, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent, SwitchComponent, IconComponent],
   template: `
     <main class="flex flex-col justify-center justify-items-stretch items-center snap-mandatory snap-y">
 
@@ -40,9 +41,21 @@ import { AppIconName, IconComponent } from '../shared/icon/icon.component';
         <div class="relative" [ngClass]="(this.showScrollerButton === true) ? 'scale-in' : 'scale-out'">
 
           <!-- Scroller Button -->
-          <button type="button" role="button" class="scroll-button animate-bounce secondary-text-color" (click)="scrollToNextContent()">
+          <button type="button" role="button" class="animate-bounce secondary-text-color" (click)="scrollToNextContent()">
             <app-icon [name]="appIconName" [size]="45" color="#999999"></app-icon>
           </button>
+
+        </div>
+
+      </div>
+
+      <!-- Change Theme section -->
+      <div class="fixed top-6 right-4 z-50">
+
+        <div class="relative" [ngClass]="(this.showScrollerButton === true) ? 'scale-in' : 'scale-out'">
+
+          <!-- Change Theme Switch -->
+          <app-switch (change)="changeTheme(!lightTheme)"></app-switch>
 
         </div>
 
@@ -54,7 +67,10 @@ import { AppIconName, IconComponent } from '../shared/icon/icon.component';
 })
 // '.snap-scroller { height: 93vh; overflow-y: scroll; scroll-snap-type: y mandatory; section { scroll-snap-align: start; } }'
 export class MainComponent implements AfterViewInit, OnDestroy {
-  changeDetector = inject(ChangeDetectorRef)
+  private document: Document = inject(DOCUMENT);
+  private changeDetector = inject(ChangeDetectorRef)
+
+  lightTheme: boolean = false;
 
   ids: Array<string> = [
     'openingRemarks',
@@ -93,6 +109,24 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     this.intersectionObserver.unobserve(this.invitationDetailsElement.nativeElement);
     this.intersectionObserver.unobserve(this.wishesAndHopesElement.nativeElement);
     this.intersectionObserver.unobserve(this.closingRemarksElement.nativeElement);
+  }
+
+  public changeTheme(data: boolean = false): void {
+    this.lightTheme = data;
+    console.log('data', data);
+
+    // Change the theme to light theme
+    if (data) {
+      this.document.body.classList.add('light-theme');
+      this.document.body.classList.remove('dark-theme');
+    }
+
+    // Change the theme to dark theme
+    if (!data) {
+      this.document.body.classList.add('dark-theme');
+      this.document.body.classList.remove('light-theme');
+    }
+
   }
 
   private observeIntersections() {
