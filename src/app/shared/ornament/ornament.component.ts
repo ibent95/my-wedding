@@ -37,13 +37,15 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
   @Input() type: AppOrnamentType = 'ornament-1';
   @Input() position: AppOrnamentPosition = 'bottom-center';
   @Input() class!: string;
-  @Input() width!: number;
+  @Input() width!: string;
+  @Input() height!: string;
   @Input() color!: AppOrnamentColor | string;
   @Input() ariaLabel!: string;
 
   sanitizedHTML!: SafeHtml;
   providerClass!: any;
   providerWidth!: any;
+  providerHeight!: any;
   providerColor!: any;
   providerAriaLabel!: any;
 
@@ -53,8 +55,12 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
       this.providerClass = this.class;
     }
 
-    if (this.width) {
-      this.providerWidth = this.width;
+    if (this.providerClass || this.width) {
+      this.providerWidth = this.provideWidthFromInput(this.width, this.height);
+    }
+
+    if (this.providerClass || this.height) {
+      this.providerHeight = this.provideHeightFromInput(this.height, this.width);
     }
 
     if (this.color) {
@@ -69,6 +75,41 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initiateSvg();
+  }
+
+  private provideWidthFromInput(width: string | null, height: string | null): string | null {
+    let results: 'auto' | string | null = width || null;
+    const classWidthCondition: boolean =
+      //this.class.includes('w-') ||
+      //this.class.includes('min-w-') ||
+      this.class.includes('h-') ||
+      this.class.includes('min-h-')
+    ;
+
+    console.log('width', this.class, this.class.includes('h-'), this.class.includes('min-h-'));
+    if ((!width && height) || classWidthCondition) {
+      console.log('true');
+
+      results = 'auto';
+    }
+
+    return results;
+  }
+
+  private provideHeightFromInput(height: string | null, width: string | null): string | null {
+    let results: 'auto' | string | null = height || null;
+    const classHeightCondition: boolean =
+      //this.class.includes('h-') ||
+      //this.class.includes('min-h-') ||
+      this.class.includes('w-') ||
+      this.class.includes('min-w-')
+      ;
+
+    if ((!height && width) || classHeightCondition) {
+      results = 'auto';
+    }
+
+    return results;
   }
 
   private provideColorFromInput(color: AppOrnamentColor | string): string {
@@ -100,8 +141,16 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
       // Now you can manipulate the SVG as it's inline
       const element = this.ornamentElement.nativeElement?.querySelector('svg');
 
+      if (element && this.providerClass) {
+        this.renderer?.setAttribute(element, 'class', this.providerClass.toString());
+      }
+
       if (element && this.providerWidth) {
         this.renderer?.setAttribute(element, 'width', this.providerWidth.toString());
+      }
+
+      if (element && this.providerHeight) {
+        this.renderer?.setAttribute(element, 'height', this.providerHeight.toString());
       }
 
       if (element && this.providerColor) {
