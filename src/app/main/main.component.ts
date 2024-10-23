@@ -40,8 +40,8 @@ import { AppIconName, IconComponent } from '../shared/icon/icon.component';
         <div class="relative" [ngClass]="(this.showScrollerButton === true) ? 'scale-in' : 'scale-out'">
 
           <!-- Scroller Button -->
-          <button type="button" role="button" class="animate-bounce secondary-text-color invert" (click)="scrollToNextContent()">
-            <app-icon [name]="appIconName" [size]="45" color="third-inverse"></app-icon>
+          <button type="button" role="button" class="scroll-button animate-bounce secondary-text-color" (click)="scrollToNextContent()">
+            <app-icon [name]="appIconName" [size]="45" color="#999999"></app-icon>
           </button>
 
         </div>
