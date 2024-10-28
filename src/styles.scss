@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 /**
  * Default Variables Configs
@@ -34,6 +34,27 @@
 
 	--background-color: var(--dark-background-color);
 	--forground-color: var(--dark-secondary-color);
+}
+
+@font-face {
+	font-family: 'Mulish';
+	src: url('/assets/fonts/Mulish-VariableFont_wght.ttf') format('truetype');
+	font-weight: 200 1000;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Mulish';
+	src: url('/assets/fonts/Mulish-Italic-VariableFont_wght.ttf') format('truetype');
+	font-weight: 200 1000;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Dancing Script';
+	src: url('/assets/fonts/DancingScript-VariableFont_wght.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
 }
 
 /**

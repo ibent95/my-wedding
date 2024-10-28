@@ -113,7 +113,6 @@ export class MainComponent implements AfterViewInit, OnDestroy {
 
   public changeTheme(data: boolean = false): void {
     this.lightTheme = data;
-    console.log('data', data);
 
     // Change the theme to light theme
     if (data) {
