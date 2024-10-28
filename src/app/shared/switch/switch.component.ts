@@ -44,7 +44,7 @@ import { AfterViewInit, Component, Input, input, OnInit } from '@angular/core';
       height: 26px;
       width: 26px;
       left: 2px;
-      bottom: 2px;
+      bottom: 1.5px;
       background-color: var(--fourth-color);
       -webkit-transition: .4s;
       transition: .4s;
