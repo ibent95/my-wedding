@@ -35,6 +35,7 @@ import { AfterViewInit, Component, Input, input, OnInit } from '@angular/core';
       background-color: var(--primary-color);
       border: solid var(--third-color);
       -webkit-transition: .4s;
+      -ms-transition: .4s;
       transition: .4s;
     }
 
@@ -47,6 +48,7 @@ import { AfterViewInit, Component, Input, input, OnInit } from '@angular/core';
       bottom: 1.5px;
       background-color: var(--fourth-color);
       -webkit-transition: .4s;
+      -ms-transition: .4s;
       transition: .4s;
     }
 

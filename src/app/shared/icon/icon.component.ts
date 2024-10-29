@@ -23,7 +23,7 @@ export type AppIconColor = 'primary' | 'secondary' | 'third' | 'fourth';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './icon.component.html',
-  styles: ['']
+  styles: ``
 })
 export class IconComponent implements OnInit {
   @Input() name!: AppIconName;

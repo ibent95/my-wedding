@@ -194,27 +194,27 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     switch (this.currentSection) {
 
       case 0:
-        this.wiseWordsOrPrayerElement.nativeElement?.scrollIntoView({ behavior: 'smooth' });
+        this.wiseWordsOrPrayerElement.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         break;
 
       case 1:
-        this.invitationDetailsElement.nativeElement?.scrollIntoView({ behavior: 'smooth' });
+        this.invitationDetailsElement.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         break;
 
       case 2:
-        this.wishesAndHopesElement.nativeElement?.scrollIntoView({ behavior: 'smooth' });
+        this.wishesAndHopesElement.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         break;
 
       case 3:
-        this.closingRemarksElement.nativeElement?.scrollIntoView({ behavior: 'smooth' });
+        this.closingRemarksElement.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         break;
 
       //case 4:
-      //  this.openingRemarksElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+      //  this.openingRemarksElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       //  break;
 
       default:
-        this.openingRemarksElement.nativeElement?.scrollIntoView({ behavior: 'smooth' });
+        this.openingRemarksElement.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         break;
 
     }
