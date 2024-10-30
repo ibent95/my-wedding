@@ -30,7 +30,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDe
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.5);
-      z-index: 10;
+      z-index: 80;
     }
 
     .modal-content {
@@ -50,7 +50,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDe
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
 
-      z-index: 11;
+      z-index: 81;
     }
 
     .close-button {
