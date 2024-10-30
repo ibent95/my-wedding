@@ -1,5 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { IconComponent } from '../../shared/icon/icon.component';
+import { ModalComponent } from '../../shared/modal/modal.component';
+import { PopoverComponent } from '../../shared/popover/popover.component';
+import { OrnamentComponent } from "../../shared/ornament/ornament.component";
 
 export type BankAccount = {
   bankName: string,
@@ -10,9 +13,9 @@ export type BankAccount = {
 @Component({
   selector: 'app-closing-remarks',
   standalone: true,
-  imports: [IconComponent],
+  imports: [IconComponent, ModalComponent, PopoverComponent, OrnamentComponent],
   templateUrl: './closing-remarks.component.html',
-  styles: ['section { min-height: 96vh; }']
+  styles: ``, // ['section { min-height: 96vh; }']
 })
 export class ClosingRemarksComponent {
   @Input() id: string = 'closingRemarks';
@@ -30,6 +33,8 @@ export class ClosingRemarksComponent {
   ];
 
   isAccountNumberCopied: boolean = false;
+  isModalOpen: boolean = false;
+  isPopoverOpen: boolean = false;
 
   /**
    * onCopyToClipboardClick
@@ -37,6 +42,7 @@ export class ClosingRemarksComponent {
   public onCopyToClipboardClick(accountNumber: string): void {
 
     this.isAccountNumberCopied = false;
+    this.isPopoverOpen = true;
 
     navigator.clipboard.writeText(accountNumber).then(() => {
       this.isAccountNumberCopied = true;
@@ -45,6 +51,18 @@ export class ClosingRemarksComponent {
       console.error('Failed to copy: ', err);
     });
 
+  }
+
+  public onClosePopover(): void {
+    this.isPopoverOpen = false;
+  }
+
+  public openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  public onCloseModal(): void {
+    this.isModalOpen = false;
   }
 
 }

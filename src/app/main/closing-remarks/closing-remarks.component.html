@@ -1,62 +1,92 @@
-<section class="flex flex-col justify-center" [id]="id">
-	<p class="text-center text-wrap mb-4">
-		Dengan penuh rasa syukur, kami ucapkan terima kasih atas perhatian dan kehadiran Bapak/Ibu/Saudara/i sekalian <br>
-		pada hari istimewa kami nanti. Semoga kehadiran Anda menjadi bagian dari kebahagiaan yang kami rasakan. <br>
-		Wassalamualaikum warohmatullahi wabarokatuh.
-	</p>
+<section class="flex flex-col justify-around" [id]="id">
 
-	<span class="text-center text-wrap font-bold">Catatan:</span>
+	<app-ornament class="self-center" position="top-center" color="primary-inverse"></app-ornament>
 
-	<p class="text-center text-wrap mb-4">
-		Apabila Bapak/Ibu/Saudara/i berkenan memberikan tanda kasih dalam bentuk dana, <br>
-		berikut informasi rekening yang dapat digunakan : <br>
-	</p>
+	<div class="flex flex-col justify-center px-5">
 
-	<table class="table-fixed primary-table border border-separate self-center mx-2">
-		<thead>
-			<tr>
-				<th class="border">Nama Bank</th>
-				<th class="border">Atas Nama</th>
-				<th class="border">No. Rekening</th>
-			</tr>
-		</thead>
-		<tbody>
-			@for (bankAccount of bankAccounts; track bankAccount.bankAccountNumber; let bankAccountIndex = $index;) {
-				<tr>
-					<td class="border" [innerHTML]="bankAccount.bankName"></td>
-					<td class="border" [innerHTML]="bankAccount.bankAccountName"></td>
-					<td class="border text-wrap font-bold">
-						{{ bankAccount.bankAccountNumber }}
-						<button type="button" role="button" class="" (click)="onCopyToClipboardClick(bankAccount.bankAccountNumber)">
-							<app-icon name="copy-alt" color="fourth"></app-icon>
-						</button>
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
-
-	<br>
-
-	<p class="text-center text-wrap mb-4">
-		Kami juga menerima tanda kasih dalam bentuk barang/benda. Apabila Bapak/Ibu/Saudara/i berkenan, <br>
-		dapat mengirimkannya ke alamat berikut : <br>
+		<p class="text-center">Ingin memberikan tanda mata?</p>
 
 		<br>
 
-		<strong>
-			Kontrakan pak Ngaliman, <br>
-			Jl. Raya Bakungan No. 000, Dusun Bakungan, <br>
-			Kelurahan Wedomartani, Kecamatan Ngemplak, <br>
-			Kabupaten Sleman, Provinsi DI. Yogyakarta. <br>
-			Kode Pos: 55584
-		</strong>
-	</p>
+		<button class="appearance-none rounded-lg outline-double transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 m-4 p-3 self-center" role="button" (click)="openModal()">Lihat Rincian</button>
+
+		<app-modal [isOpen]="isModalOpen" (onClose)="onCloseModal()">
+
+			<div class="flex flex-col justify-center">
+
+				<p class="text-center text-wrap font-bold">Catatan:</p>
+
+				<p class="text-center text-wrap mb-4">
+					Apabila Bapak/Ibu/Saudara/i berkenan memberikan tanda kasih dalam bentuk dana, <br>
+					berikut informasi rekening yang dapat digunakan : <br>
+				</p>
+
+				<div class="self-center mx-2">
+
+					<table class="table-fixed primary-table border border-separate">
+						<thead>
+							<tr>
+								<th class="border">Nama Bank</th>
+								<th class="border">Atas Nama</th>
+								<th class="border">No. Rekening</th>
+							</tr>
+						</thead>
+						<tbody>
+							@for (bankAccount of bankAccounts; track bankAccount.bankAccountNumber; let bankAccountIndex = $index;) {
+								<tr>
+									<td class="border" [innerHTML]="bankAccount.bankName"></td>
+									<td class="border" [innerHTML]="bankAccount.bankAccountName"></td>
+									<td class="border text-wrap font-bold">
+										{{ bankAccount.bankAccountNumber }}
+
+										<button type="button" role="button" class=""
+											(click)="onCopyToClipboardClick(bankAccount.bankAccountNumber)">
+											<app-icon name="copy-alt" color="fourth"></app-icon>
+										</button>
+
+										<app-popover [isOpen]="isPopoverOpen" (onClose)="onClosePopover()">
+											<p [innerHTML]="bankAccount.bankAccountNumber + ' tersalin!'"></p>
+										</app-popover>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
 
 
-	<p class="text-center text-wrap mb-4">
-		Namun, kami menegaskan bahwa kehadiran Bapak/Ibu/Saudara/i sudah merupakan kebahagiaan terbesar bagi kami. <br>
-		Oleh karena itu, pemberian tanda kasih, baik dalam bentuk dana maupun barang, tidaklah menjadi harapan utama, <br>
-		melainkan kebersamaan di hari bahagia kami yang kami harapkan.
-	</p>
+				</div>
+
+				<br>
+
+				<p class="text-center text-wrap mb-4">
+					Kami juga menerima tanda kasih dalam bentuk barang/benda. Apabila Bapak/Ibu/Saudara/i berkenan, <br>
+					dapat mengirimkannya ke alamat berikut : <br>
+
+					<br>
+
+					<strong>
+						Kontrakan pak Ngaliman, <br>
+						Jl. Raya Bakungan No. 000, Dusun Bakungan, <br>
+						Kelurahan Wedomartani, Kecamatan Ngemplak, <br>
+						Kabupaten Sleman, Provinsi DI. Yogyakarta. <br>
+						Kode Pos: 55584
+					</strong>
+				</p>
+
+			</div>
+
+		</app-modal>
+
+		<br>
+
+		<p class="text-center text-wrap mb-4">
+			Namun, kami menegaskan bahwa kehadiran Bapak/Ibu/Saudara/i sudah merupakan kebahagiaan terbesar bagi kami. <br>
+			Oleh karena itu, pemberian tanda kasih, baik dalam bentuk dana maupun barang, tidaklah menjadi harapan utama, <br>
+			melainkan kebersamaan di hari bahagia kami yang kami harapkan.
+		</p>
+
+	</div>
+
+	<app-ornament class="self-center" color="primary-inverse"></app-ornament>
+
 </section>
