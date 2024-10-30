@@ -11,7 +11,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDe
     }
 
     @if (isOpen) {
-      <div class="modal-content border w-[80vw] h-[99.7vh] mobile:w-screen" #modalContent>
+      <div class="modal-content border w-[80vw] h-fit mobile:w-screen mobile:h-[99.7vh]" #modalContent>
         <button class="close-button text-xl" (click)="close()">&times;</button>
 
         <ng-content></ng-content>
