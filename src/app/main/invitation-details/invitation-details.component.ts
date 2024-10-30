@@ -8,7 +8,7 @@ import { OrnamentComponent } from '../../shared/ornament/ornament.component';
   standalone: true,
   imports: [CommonModule, OrnamentComponent, IconComponent],
   templateUrl: './invitation-details.component.html',
-  styles: []
+  styles: ``
 })
 export class InvitationDetailsComponent {
   @Input() id: string = 'invitationDetails';
