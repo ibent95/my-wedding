@@ -27,6 +27,8 @@ export class AudioPlayerComponent implements AfterViewInit {
   @Output() isStopped: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   ngAfterViewInit(): void {
+    //this.audioPlayer.nativeElement.muted = true; // Set muted initially
+
     if (this.autoplay) {
       this.playAudio();
     }
@@ -34,7 +36,12 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   // Play audio
   playAudio() {
-    this.audioPlayer.nativeElement.play();
+    this.audioPlayer.nativeElement.play().then(() => {
+      this.audioPlayer.nativeElement.muted = false; // Unmute
+    }).catch((error: any) => {
+      console.warn("The audio failed to start, user interaction is required");
+    });
+
     this.state = 'playing';
     this.isPlayed.next(true);
   }
@@ -42,6 +49,7 @@ export class AudioPlayerComponent implements AfterViewInit {
   // Pause audio
   pauseAudio() {
     this.audioPlayer.nativeElement.pause();
+
     this.state = 'paused';
     this.isPaused.next(true);
   }
@@ -49,6 +57,7 @@ export class AudioPlayerComponent implements AfterViewInit {
   // Stop audio
   stopAudio() {
     this.audioPlayer.nativeElement.pause();
+
     this.audioPlayer.nativeElement.currentTime = 0; // Reset to the beginning
     this.state = 'stopped';
     this.isStopped.next(true);
