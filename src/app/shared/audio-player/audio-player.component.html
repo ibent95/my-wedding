@@ -1,0 +1,31 @@
+<div class="flex flex-col items-end">
+
+	<audio #audioPlayer (play)="onPlay()" (pause)="onPause()" (timeupdate)="onTimeUpdate($event)">
+		<source [src]="source" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+
+	<!-- Custom controls -->
+	<div class="flex flex-col items-end">
+
+		@if (state === 'stopped' || state === 'paused') {
+			<button (click)="playAudio()">
+				<app-icon name="play-circle" color="fourth" color="primary-inverse"></app-icon>
+			</button>
+		}
+
+		@else {
+			<button (click)="pauseAudio()">
+				<app-icon name="pause-circle" color="fourth" color="primary-inverse"></app-icon>
+			</button>
+			<button (click)="stopAudio()">
+				<app-icon name="stop-circle" color="fourth" color="primary-inverse"></app-icon>
+			</button>
+		}
+
+	</div>
+
+	<!-- Display current time -->
+	<span [innerHTML]="displayedCurrentTime"></span>
+
+</div>

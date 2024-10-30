@@ -1,0 +1,71 @@
+<main class="flex flex-col justify-center justify-items-stretch items-center snap-mandatory snap-y">
+
+	<!-- Opening remarks -->
+	<div class="snap-always snap-start" [id]="ids[0]" #openingRemarks>
+		<app-opening-remarks [id]="ids[0] + 'Section'" [weddingDate]="weddingDate"></app-opening-remarks>
+	</div>
+
+	<!-- Wise words or prayer -->
+	<div class="snap-always snap-start" [id]="ids[1]" #wiseWordsOrPrayer>
+		<app-wise-words-or-prayer [id]="ids[1] + 'Section'"></app-wise-words-or-prayer>
+	</div>
+
+	<!-- Invitation details -->
+	<div class="snap-always snap-start" [id]="ids[2]" #invitationDetails>
+		<app-invitation-details [id]="ids[2] + 'Section'" [weddingDate]="weddingDate" [weddingAddress]="weddingAddress" [weddingMapRouteLink]="weddingMapRouteLink"></app-invitation-details>
+	</div>
+
+	<!-- Galery -->
+	<div class="snap-always snap-start" [id]="ids[2]" #galery>
+		<app-galery></app-galery>
+	</div>
+
+	<!-- Wishes -->
+	<div class="snap-always snap-start" [id]="ids[3]" #wishesAndHopes>
+		<app-wishes-and-hopes [id]="ids[3] + 'Section'"></app-wishes-and-hopes>
+	</div>
+
+	<!-- Closing remarks -->
+	<div class="snap-always snap-start" [id]="ids[4]" #closingRemarks>
+		<app-closing-remarks [id]="ids[4] + 'Section'"></app-closing-remarks>
+	</div>
+
+	<!-- Scroller section -->
+	<div class="fixed bottom-4 z-50">
+
+		<div class="relative" [ngClass]="(this.showScrollerButton === true) ? 'scale-in' : 'scale-out'">
+
+			<!-- Scroller button -->
+			<button type="button" role="button" class="animate-bounce secondary-text-color" (click)="scrollToNextContent()">
+				<app-icon [name]="appIconName" [size]="45" color="#999999"></app-icon>
+			</button>
+
+		</div>
+
+	</div>
+
+	<!-- Change theme section -->
+	<div class="fixed top-6 right-4 z-50">
+
+		<div class="relative" [ngClass]="(this.showScrollerButton === true) ? 'scale-in' : 'scale-out'">
+
+			<!-- Change theme switch -->
+			<app-switch (change)="changeTheme(!lightTheme)"></app-switch>
+
+		</div>
+
+	</div>
+
+	<!-- Audio player section -->
+	<div class="fixed bottom-6 right-4 z-50">
+
+		<div class="relative" [ngClass]="(this.showScrollerButton === true) ? 'scale-in' : 'scale-out'">
+
+			<!-- Audio player -->
+			<app-audio-player source="/assets/audios/Raissa_Anggiani_-_Benih.mp3" [autoplay]="true"></app-audio-player>
+
+		</div>
+
+	</div>
+
+</main>

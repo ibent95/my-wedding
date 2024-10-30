@@ -13,7 +13,10 @@ export type AppIconName =
   'map-alt' |
   'copy' |
   'copy-alt' |
-  'copy-alt-solid'
+  'copy-alt-solid' |
+  'play-circle' |
+  'pause-circle' |
+  'stop-circle'
 ;
 
 export type AppIconColor =

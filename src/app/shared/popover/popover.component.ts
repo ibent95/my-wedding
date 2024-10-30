@@ -148,9 +148,7 @@ export class PopoverComponent implements OnInit, AfterViewInit, OnChanges, OnDes
           `${triggerRect.left + triggerRect.width / 2}px`
         );
       }
-    }
-
-    if (!this.isOpen) {
+    } else {
       clearTimeout(this.timeout);
 
       this.onClose.next({
@@ -159,6 +157,12 @@ export class PopoverComponent implements OnInit, AfterViewInit, OnChanges, OnDes
       });
     }
 
+  }
+
+  public closePopover(): void {
+    this.isOpen = false;
+    clearTimeout(this.timeout);
+    this.onClose.emit();
   }
 
 }

@@ -41,12 +41,12 @@
 										{{ bankAccount.bankAccountNumber }}
 
 										<button type="button" role="button" class=""
-											(click)="onCopyToClipboardClick(bankAccount.bankAccountNumber)">
+											(click)="onCopyToClipboardClick(bankAccount.bankAccountNumber, bankAccountIndex)">
 											<app-icon name="copy-alt" color="fourth" color="primary-inverse"></app-icon>
 										</button>
 
-										<app-popover [isOpen]="isPopoverOpen" (onClose)="onClosePopover()">
-											<p [innerHTML]="bankAccount.bankAccountNumber + ' tersalin!'"></p>
+										<app-popover [isOpen]="isPopoverOpen" (onClose)="onClosePopover(bankAccountIndex)" [id]="bankAccountIndex">
+											<p>{{ bankAccount.bankAccountNumber + ' tersalin!' }}</p>
 										</app-popover>
 									</td>
 								</tr>
