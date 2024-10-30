@@ -79,7 +79,7 @@ header { border: solid var(--fourth-color); }
 	font-optical-sizing: auto;
 }
 
-section { min-height: 100vh; }
+section { min-height: 100vh; padding-left: 0.5rem; padding-right: 0.5rem; }
 
 footer { background-color: var(--secondary-color); color: var(--primary-color); min-height: 14vh; }
 
