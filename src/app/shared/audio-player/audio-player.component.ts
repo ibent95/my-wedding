@@ -56,7 +56,6 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   // Update current time
   onTimeUpdate(event: Event) {
-    console.log('time', (event.target as HTMLAudioElement).currentTime);
 
     this.currentTime = (event.target as HTMLAudioElement).currentTime;
 
@@ -69,6 +68,7 @@ export class AudioPlayerComponent implements AfterViewInit {
     this.changeDetector.detectChanges();
 
     this.onPlaying.next({ currentTime: this.currentTime });
+
   }
 
   private padZero(value: number): string {
