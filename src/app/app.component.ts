@@ -20,7 +20,7 @@ import { MainComponent } from "./main/main.component";
 
     <app-footer></app-footer>
   `,
-  styles: []
+  styles: ``
 })
 export class AppComponent {
   title = 'my-wedding';

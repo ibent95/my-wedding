@@ -40,6 +40,7 @@ export class AudioPlayerComponent implements AfterViewInit {
       this.audioPlayer.nativeElement.muted = false; // Unmute
     }).catch((error: any) => {
       console.warn("The audio failed to start, user interaction is required");
+      this.state = 'stopped';
     });
 
     this.state = 'playing';
