@@ -11,9 +11,14 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDe
     }
 
     @if (isOpen) {
-      <div class="modal-content w-[80vw] h-[80vh]" #modalContent>
-        <button class="close-button decoration-4" (click)="close()">&times;</button>
+      <div class="modal-content border w-[80vw] h-fit mobile:w-screen" #modalContent>
+        <button class="close-button text-xl" (click)="close()">&times;</button>
+
         <ng-content></ng-content>
+
+        <div class="flex flex-col">
+          <button class="appearance-none rounded-lg outline-double transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 m-4 p-3 self-center" (click)="close()">Kembali</button>
+        </div>
       </div>
     }
   `,
@@ -35,8 +40,8 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDe
       background: var(--primary-color);
       padding: 20px;
       border-radius: 8px;
-      width: 80vw;          // Adjust width as needed
-      height: fit-content;  // Adjust height as needed
+      //width: 80vw;          // Adjust width as needed
+      //height: fit-content;  // Adjust height as needed
       max-width: 100vw;     // Maximum width of the modal
       max-height: 100vh;    // Maximum height of the modal
       overflow-y: auto;     // Enable vertical scrolling
@@ -50,11 +55,11 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDe
 
     .close-button {
       position: absolute;
-      top: 10px;
+      top: 15px;
       right: 10px;
-      background: none;
-      border: none;
-      font-size: 18px;
+      //background: none;
+      //border: none;
+      //font-size: 18px;
       cursor: pointer;
     }
   `
