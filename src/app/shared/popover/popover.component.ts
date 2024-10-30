@@ -1,6 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnChanges, OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 
+export type AppPopoverColor =
+  'primary' |
+  'secondary' |
+  'third' |
+  'fourth' |
+  'primary-inverse' |
+  'secondary-inverse' |
+  'third-inverse' |
+  'fourth-inverse'
+;
+
 @Component({
   selector: 'app-popover',
   standalone: true,
@@ -27,19 +38,32 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, injec
     }
   `
 })
-export class PopoverComponent implements OnInit, OnChanges, OnDestroy {
+export class PopoverComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('popoverContent', { static: false }) popoverContent!: ElementRef;
   private renderer: Renderer2 = inject(Renderer2);
 
   @Input() isOpen: boolean = false;
   @Input() duration: number = 5000;
+  @Input() color: AppPopoverColor | string = 'primary-inverse';
 
   private timeout!: any;
+  providerColor!: any;
 
   @Output() onClose: EventEmitter<any> = new EventEmitter<any>(true);
 
   ngOnInit(): void {
+
+    if (this.color) {
+      this.providerColor = this.provideColorFromInput(this.color);
+    }
+
     console.log('isOpen',this.isOpen);
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isOpen) {
+      this.initiatePopover(this.duration);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,8 +81,39 @@ export class PopoverComponent implements OnInit, OnChanges, OnDestroy {
     this.onClose.unsubscribe();
   }
 
+  private provideColorFromInput(color: AppPopoverColor | string): string {
+    let results: string;
+
+    switch (color) {
+      case 'primary':
+      case 'secondary':
+      case 'third':
+      case 'fourth':
+      case 'primary-inverse':
+      case 'secondary-inverse':
+      case 'third-inverse':
+      case 'fourth-inverse':
+        results = `var(--${color}-text-color)`;
+        break;
+
+      default:
+        results = color;
+        break;
+    }
+
+    return results;
+  }
+
   private initiatePopover(duration: number): void {
-    this.timeout = setTimeout(() => this.togglePopover(), duration);
+
+    if (this.popoverContent?.nativeElement && this.providerColor) {
+      this.renderer?.setStyle(this.popoverContent.nativeElement, 'background-color', this.providerColor.toString());
+    }
+
+    if (this.isOpen) {
+      this.timeout = setTimeout(() => this.togglePopover(), duration);
+    }
+
   }
 
   //@HostListener('document:click', ['$event'])

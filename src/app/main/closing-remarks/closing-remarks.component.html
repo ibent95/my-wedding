@@ -21,6 +21,7 @@
 					berikut informasi rekening yang dapat digunakan : <br>
 				</p>
 
+				<!-- Bank Account Table -->
 				<div class="self-center mx-2">
 
 					<table class="table-fixed primary-table border border-separate">
@@ -41,7 +42,7 @@
 
 										<button type="button" role="button" class=""
 											(click)="onCopyToClipboardClick(bankAccount.bankAccountNumber)">
-											<app-icon name="copy-alt" color="fourth"></app-icon>
+											<app-icon name="copy-alt" color="fourth" color="primary-inverse"></app-icon>
 										</button>
 
 										<app-popover [isOpen]="isPopoverOpen" (onClose)="onClosePopover()">

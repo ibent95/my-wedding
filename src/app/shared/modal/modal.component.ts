@@ -12,7 +12,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDe
 
     @if (isOpen) {
       <div class="modal-content w-[80vw] h-[80vh]" #modalContent>
-        <button class="close-button" (click)="close()">×</button>
+        <button class="close-button decoration-4" (click)="close()">&times;</button>
         <ng-content></ng-content>
       </div>
     }

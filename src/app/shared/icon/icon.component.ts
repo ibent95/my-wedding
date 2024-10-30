@@ -16,7 +16,16 @@ export type AppIconName =
   'copy-alt-solid'
 ;
 
-export type AppIconColor = 'primary' | 'secondary' | 'third' | 'fourth';
+export type AppIconColor =
+  'primary' |
+  'secondary' |
+  'third' |
+  'fourth' |
+  'primary-inverse' |
+  'secondary-inverse' |
+  'third-inverse' |
+  'fourth-inverse'
+;
 
 @Component({
   selector: 'app-icon',
