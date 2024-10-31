@@ -16,6 +16,8 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   @Input() source: string = '/assets/audios/Raissa_Anggiani_-_Benih.mp3';
   @Input() autoplay: boolean = false;
+  @Input() muted: boolean = false;
+  @Input() loop: boolean = false;
 
   state: 'playing' | 'paused' | 'stopped' = 'stopped';
   currentTime: number = 0;
@@ -27,7 +29,7 @@ export class AudioPlayerComponent implements AfterViewInit {
   @Output() isStopped: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   ngAfterViewInit(): void {
-    //this.audioPlayer.nativeElement.muted = true; // Set muted initially
+    this.audioPlayer.nativeElement.muted = true; // Set muted initially
 
     if (this.autoplay) {
       this.playAudio();
@@ -39,7 +41,7 @@ export class AudioPlayerComponent implements AfterViewInit {
     this.audioPlayer.nativeElement.play().then(() => {
       this.audioPlayer.nativeElement.muted = false; // Unmute
     }).catch((error: any) => {
-      console.warn("The audio failed to start, user interaction is required");
+      console.warn("The audio failed to start, user interaction is required.", error);
       this.state = 'stopped';
     });
 
