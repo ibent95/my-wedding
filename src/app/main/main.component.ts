@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { OpeningRemarksComponent } from './opening-remarks/opening-remarks.component';
 import { WiseWordsOrPrayerComponent } from './wise-words-or-prayer/wise-words-or-prayer.component';
 import { InvitationDetailsComponent } from './invitation-details/invitation-details.component';
@@ -18,7 +18,7 @@ import { AudioPlayerComponent } from "../shared/audio-player/audio-player.compon
   styles: ['.scale-out { -webkit-animation: scale-out .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; animation: scale-out .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; } .scale-in { -webkit-animation: scale-in .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; animation: scale-in .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; }']
 })
 // '.snap-scroller { height: 93vh; overflow-y: scroll; scroll-snap-type: y mandatory; section { scroll-snap-align: start; } }'
-export class MainComponent implements AfterViewInit, OnDestroy {
+export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   private document: Document = inject(DOCUMENT);
   private changeDetector = inject(ChangeDetectorRef)
 
@@ -53,6 +53,9 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   weddingAddress: string = 'Desa Batursari, Kecamatan Candiroto, Kabupaten Temanggung, Provinsi Jawa Tengah';
   weddingMapRouteLink: string = 'https://maps.app.goo.gl/GbT94BjrzM8ggH5k9'; // 'https://maps.app.goo.gl/KNkUykG7v9uLY7B19?g_st=aw';
 
+  ngOnInit(): void {
+  }
+
   ngAfterViewInit(): void {
     this.observeIntersections();
   }
@@ -64,6 +67,18 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     this.intersectionObserver.unobserve(this.galeryElement.nativeElement);
     this.intersectionObserver.unobserve(this.wishesAndHopesElement.nativeElement);
     this.intersectionObserver.unobserve(this.closingRemarksElement.nativeElement);
+  }
+
+  requestAudioPermission() {
+    navigator.mediaDevices.getUserMedia({ audio: true, })
+      .then((stream) => {
+        console.log("Audio permission granted.");
+        // You can do something with the audio stream here
+      })
+      .catch((error) => {
+        console.error("Audio permission denied.", error);
+        alert("Please allow audio access for the best experience.");
+      });
   }
 
   public changeTheme(data: boolean = false): void {

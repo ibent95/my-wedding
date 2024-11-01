@@ -20,11 +20,12 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   private domSanitizer: DomSanitizer = inject(DomSanitizer);
 
   @Input() source: string = '/assets/audios/Raissa_Anggiani_-_Benih.mp3';
-  @Input() safeSource!: SafeResourceUrl;
   @Input() autoplay: boolean = true;
   @Input() muted: boolean = false;
   @Input() loop: boolean = true;
 
+  safeSilenceSource!: SafeResourceUrl;
+  safeSource!: SafeResourceUrl;
   state: 'playing' | 'paused' | 'stopped' = 'stopped';
   currentTime: number = 0;
   displayedCurrentTime: string = '00:00';
@@ -36,6 +37,7 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() isStopped: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   ngOnInit(): void {
+    this.safeSilenceSource = this.domSanitizer.bypassSecurityTrustResourceUrl('https://ia800206.us.archive.org/16/items/SilentRingtone/silence_64kb.mp3');
     this.safeSource = this.domSanitizer.bypassSecurityTrustResourceUrl(this.source);
     //console.log('autoplay', this.autoplay);
   }
@@ -47,13 +49,16 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.debugText = ` ${this.audioPlayer.nativeElement.muted} | ${this.audioPlayer.nativeElement.autoplay} | ${this.audioPlayer.nativeElement.loop} `
 
-    //this.audioPlayer.nativeElement.play();
+    this.audioPlayer.nativeElement.addEventListener('click', this.playAudio.bind(this));
     if (this.autoplay) {
+      //window.addEventListener('click', this.playAudio.bind(this));
+      setTimeout(() => {
+        //this.playElement.nativeElement.click();
+        //this.playAudio();
+      }, 1000);
     }
-    this.playAudio();
 
-    this.playElement.nativeElement.click();
-    this.audioPlayer.nativeElement.play();
+    //this.audioPlayer.nativeElement.play();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -67,7 +72,10 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
 
   // Play audio
   playAudio() {
-    this.audioPlayer.nativeElement.muted = true;
+    this.audioPlayer.nativeElement.muted = false;
+    //var context = new AudioContext();
+    //context.resume();
+    this.audioPlayer.nativeElement.load();
     this.audioPlayer.nativeElement.play().then(() => {
       this.audioPlayer.nativeElement.muted = false; // Unmute
     }).catch((error: any) => {
