@@ -7,7 +7,7 @@
 	{{ debugText }}
 
 	<audio #audioPlayer (play)="onPlay()" (pause)="onPause()" (timeupdate)="onTimeUpdate($event)" >
-		<source [src]="safeSource" type="audio/mpeg">
+		<source [src]="safeSource" type="audio/mp3">
 		Your browser does not support the audio element.
 	</audio>
 
