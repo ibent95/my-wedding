@@ -4,7 +4,9 @@
 		[src]="safeSource">
 	</iframe>
 
-	<audio #audioPlayer (play)="onPlay()" (pause)="onPause()" (timeupdate)="onTimeUpdate($event)" [autoplay]="autoplay" [loop]="loop" [muted]="muted">
+	{{ debugText }}
+
+	<audio #audioPlayer (play)="onPlay()" (pause)="onPause()" (timeupdate)="onTimeUpdate($event)" >
 		<source [src]="safeSource" type="audio/mpeg">
 		Your browser does not support the audio element.
 	</audio>

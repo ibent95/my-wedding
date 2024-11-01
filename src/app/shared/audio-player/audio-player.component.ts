@@ -28,6 +28,7 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   state: 'playing' | 'paused' | 'stopped' = 'stopped';
   currentTime: number = 0;
   displayedCurrentTime: string = '00:00';
+  debugText!: string;
 
   @Output() onPlaying: EventEmitter<any> = new EventEmitter<any>();
   @Output() isPlayed: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -40,13 +41,17 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit(): void {
-    this.audioPlayer.nativeElement.muted = this.muted; // Set muted initially
+    //this.audioPlayer.nativeElement.muted = this.muted; // Set muted initially
+    this.audioPlayer.nativeElement.autoplay = this.autoplay; // Set muted initially
+    this.audioPlayer.nativeElement.loop = this.loop; // Set muted initially
 
+    this.debugText = ` ${this.audioPlayer.nativeElement.muted} | ${this.audioPlayer.nativeElement.autoplay} | ${this.audioPlayer.nativeElement.loop} `
+
+    this.audioPlayer.nativeElement.play();
+    this.playElement.nativeElement.click();
+    this.audioPlayer.nativeElement.play();
     if (this.autoplay) {
       //this.playAudio();
-      this.audioPlayer.nativeElement.play();
-      this.playElement.nativeElement.click();
-      this.audioPlayer.nativeElement.play();
     }
   }
 
@@ -61,6 +66,7 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
 
   // Play audio
   playAudio() {
+    this.audioPlayer.nativeElement.muted = true;
     this.audioPlayer.nativeElement.play().then(() => {
       this.audioPlayer.nativeElement.muted = false; // Unmute
     }).catch((error: any) => {
