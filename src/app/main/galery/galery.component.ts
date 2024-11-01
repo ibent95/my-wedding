@@ -8,7 +8,6 @@ import { CommonModule, IMAGE_CONFIG, NgOptimizedImage } from '@angular/common';
   imports: [CommonModule, NgOptimizedImage, OrnamentComponent],
   templateUrl: './galery.component.html',
   styleUrl: './galery.component.scss',
-  providers: [{ provide: IMAGE_CONFIG, useValue: { disableImageSizeWarning: true, disableImageLazyLoadWarning: true } }],
 })
 export class GaleryComponent {
   @Input() id: string = 'galery';

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { OpeningRemarksComponent } from "./main/opening-remarks/opening-remarks.component";
 import { WiseWordsOrPrayerComponent } from "./main/wise-words-or-prayer/wise-words-or-prayer.component";
@@ -8,12 +8,16 @@ import { ClosingRemarksComponent } from "./main/closing-remarks/closing-remarks.
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { MainComponent } from "./main/main.component";
+import { LoadingService } from './services/loading.service';
+import { LoadingScreenComponent } from "./shared/loading-screen/loading-screen.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, OpeningRemarksComponent, WiseWordsOrPrayerComponent, InvitationDetailsComponent, WishesAndHopesComponent, ClosingRemarksComponent, HeaderComponent, FooterComponent, MainComponent],
+  imports: [RouterOutlet, LoadingScreenComponent, HeaderComponent, MainComponent, FooterComponent],
   template: `
+    <app-loading-screen></app-loading-screen>
+
     <app-header></app-header>
 
     <app-main></app-main>
@@ -22,6 +26,15 @@ import { MainComponent } from "./main/main.component";
   `,
   styles: ``
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  private loadingService: LoadingService = inject(LoadingService);
   title = 'my-wedding';
+
+  ngOnInit(): void {
+    window.onload = () => {
+      this.loadingService.setLoading(false);
+    };
+  }
+
 }
