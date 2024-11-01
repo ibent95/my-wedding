@@ -48,11 +48,12 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
     this.debugText = ` ${this.audioPlayer.nativeElement.muted} | ${this.audioPlayer.nativeElement.autoplay} | ${this.audioPlayer.nativeElement.loop} `
 
     //this.audioPlayer.nativeElement.play();
-    this.playElement.nativeElement.click();
-    //this.audioPlayer.nativeElement.play();
     if (this.autoplay) {
-      //this.playAudio();
     }
+    this.playAudio();
+
+    this.playElement.nativeElement.click();
+    this.audioPlayer.nativeElement.play();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
