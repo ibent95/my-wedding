@@ -1,7 +1,11 @@
 <div class="flex flex-col items-end">
 
-	<audio #audioPlayer (play)="onPlay()" (pause)="onPause()" (timeupdate)="onTimeUpdate($event)" [autoplay]="autoplay" [muted]="muted" [loop]="loop">
-		<source [src]="source" type="audio/mpeg">
+	<iframe type="audio/mp3" allow="autoplay" style="display: none"
+		[src]="safeSource">
+	</iframe>
+
+	<audio #audioPlayer (play)="onPlay()" (pause)="onPause()" (timeupdate)="onTimeUpdate($event)" [autoplay]="autoplay" [loop]="loop" [muted]="muted">
+		<source [src]="safeSource" type="audio/mpeg">
 		Your browser does not support the audio element.
 	</audio>
 
@@ -9,16 +13,16 @@
 	<div class="flex flex-col items-end">
 
 		@if (state === 'stopped' || state === 'paused') {
-			<button (click)="playAudio()">
+			<button (click)="playAudio()" #play>
 				<app-icon name="play-circle" color="fourth" color="primary-inverse"></app-icon>
 			</button>
 		}
 
 		@else {
-			<button (click)="pauseAudio()">
+			<button (click)="pauseAudio()" #pause>
 				<app-icon name="pause-circle" color="fourth" color="primary-inverse"></app-icon>
 			</button>
-			<button (click)="stopAudio()">
+			<button (click)="stopAudio()" #stop>
 				<app-icon name="stop-circle" color="fourth" color="primary-inverse"></app-icon>
 			</button>
 		}

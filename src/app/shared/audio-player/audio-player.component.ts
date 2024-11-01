@@ -1,6 +1,7 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { IconComponent } from "../icon/icon.component";
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-audio-player',
@@ -12,14 +13,18 @@ import { IconComponent } from "../icon/icon.component";
 export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild('audioPlayer') audioPlayer!: ElementRef; // Access to the audio element
+  @ViewChild('play') playElement!: ElementRef; // Access to the play control element
+  @ViewChild('pause') pauseElement!: ElementRef; // Access to the pause control element
+  @ViewChild('stop') stopElement!: ElementRef; // Access to the stop control element
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private domSanitizer: DomSanitizer = inject(DomSanitizer);
 
   @Input() source: string = '/assets/audios/Raissa_Anggiani_-_Benih.mp3';
-  @Input() autoplay: boolean = false;
+  @Input() safeSource!: SafeResourceUrl;
+  @Input() autoplay: boolean = true;
   @Input() muted: boolean = false;
-  @Input() loop: boolean = false;
+  @Input() loop: boolean = true;
 
-  audioGranted: boolean = false;
   state: 'playing' | 'paused' | 'stopped' = 'stopped';
   currentTime: number = 0;
   displayedCurrentTime: string = '00:00';
@@ -30,58 +35,28 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() isStopped: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   ngOnInit(): void {
-
-    console.log('autoplay', this.autoplay);
-
-    this.requestAudioPermission();
-
+    this.safeSource = this.domSanitizer.bypassSecurityTrustResourceUrl(this.source);
+    //console.log('autoplay', this.autoplay);
   }
 
   ngAfterViewInit(): void {
+    this.audioPlayer.nativeElement.muted = this.muted; // Set muted initially
 
-    if (this.audioGranted) {
-      this.audioPlayer.nativeElement.muted = this.muted; // Set muted initially
-
-      if (this.autoplay) {
-        this.playAudio();
-      }
-    } else {
-      this.autoplay = false;
+    if (this.autoplay) {
+      //this.playAudio();
+      this.audioPlayer.nativeElement.play();
+      this.playElement.nativeElement.click();
+      this.audioPlayer.nativeElement.play();
     }
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('changes', changes);
-    console.log('audioGranted', this.audioGranted);
 
-    if (this.audioGranted) {
-
-      if (changes['autoplay']) {
-        this.playAudio();
-      }
-
+    if (changes['autoplay']) {
+      //this.playAudio();
     }
-  }
 
-  public requestAudioPermission(): void {
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then((stream: any) => {
-        console.log("Audio permission granted.", this.autoplay, stream);
-        // You can do something with the audio stream here
-        this.audioGranted = true;
-
-        if (this.autoplay) {
-          console.log('autoplay true');
-          this.playAudio();
-        }
-      })
-      .catch((error) => {
-        console.error("Audio permission denied.", error);
-        alert("Please allow audio access for the best experience.");
-        this.audioGranted = false;
-      });
   }
 
   // Play audio
@@ -138,11 +113,12 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   // Event when audio starts playing
   onPlay() {
     //console.log('Audio started playing');
+    this.state = 'playing';
   }
 
   // Event when audio is paused
   onPause() {
-    //console.log('Audio paused');
+    this.state = 'paused';
   }
 
 }

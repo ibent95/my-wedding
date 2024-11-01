@@ -57,7 +57,7 @@ export class PopoverComponent implements OnInit, AfterViewInit, OnChanges, OnDes
       this.providerColor = this.provideColorFromInput(this.color);
     }
 
-    console.log('isOpen',this.isOpen);
+    //console.log('isOpen',this.isOpen);
   }
 
   ngAfterViewInit(): void {
@@ -67,7 +67,7 @@ export class PopoverComponent implements OnInit, AfterViewInit, OnChanges, OnDes
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes);
+    //console.log('changes', changes);
     if (changes['isOpen']?.currentValue) {
       this.isOpen = changes['isOpen'].currentValue;
     }
@@ -127,7 +127,7 @@ export class PopoverComponent implements OnInit, AfterViewInit, OnChanges, OnDes
   //}
 
   public togglePopover(event?: Event, triggerElement?: HTMLElement): void {
-    console.log('togglePopover');
+    //console.log('togglePopover');
     event?.stopPropagation();
     this.isOpen = !this.isOpen;
 
