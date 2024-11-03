@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { OpeningRemarksComponent } from './opening-remarks/opening-remarks.component';
 import { WiseWordsOrPrayerComponent } from './wise-words-or-prayer/wise-words-or-prayer.component';
 import { InvitationDetailsComponent } from './invitation-details/invitation-details.component';
@@ -21,6 +21,8 @@ import { AudioPlayerComponent } from "../shared/audio-player/audio-player.compon
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   private document: Document = inject(DOCUMENT);
   private changeDetector = inject(ChangeDetectorRef)
+
+  @Input() isWelcomeClosed: boolean = false;
 
   lightTheme: boolean = false;
 

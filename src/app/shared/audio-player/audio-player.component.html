@@ -1,15 +1,18 @@
 <div class="flex flex-col items-end">
 
-	<!--<iframe type="audio/mp3" allow="autoplay" style="display: none"
-		[src]="safeSilenceSource">
-	</iframe>-->
-
-	{{ debugText }}
+	<!--{{ debugText }}-->
 
 	<audio #audioPlayer (play)="onPlay()" (pause)="onPause()" (timeupdate)="onTimeUpdate($event)" [muted]="muted" [autoplay]="autoplay" [loop]="loop">
 		<source [src]="safeSource" type="audio/mp3">
 		Your browser does not support the audio element.
 	</audio>
+
+	<!-- Play prompt that appears after the first scroll -->
+	@if (showPlayPrompt) {
+		<div class="play-overlay">
+			<button (click)="playAudio()">Play Audio</button>
+		</div>
+	}
 
 	<!-- Custom controls -->
 	<div class="flex flex-col items-end">

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { IconComponent } from "../icon/icon.component";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -10,7 +10,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './audio-player.component.html',
   styles: ``
 })
-export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
+export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
   @ViewChild('audioPlayer') audioPlayer!: ElementRef; // Access to the audio element
   @ViewChild('play') playElement!: ElementRef; // Access to the play control element
@@ -20,6 +20,7 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   private domSanitizer: DomSanitizer = inject(DomSanitizer);
 
   @Input() source: string = '/assets/audios/Raissa_Anggiani_-_Benih.mp3';
+  @Input() playMusic: boolean = false;
   @Input() autoplay: boolean = true;
   @Input() muted: boolean = false;
   @Input() loop: boolean = true;
@@ -29,6 +30,7 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   state: 'playing' | 'paused' | 'stopped' = 'stopped';
   currentTime: number = 0;
   displayedCurrentTime: string = '00:00';
+  showPlayPrompt = false; // Controls visibility of the play prompt
   debugText!: string;
 
   @Output() onPlaying: EventEmitter<any> = new EventEmitter<any>();
@@ -39,7 +41,6 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit(): void {
     this.safeSilenceSource = this.domSanitizer.bypassSecurityTrustResourceUrl('https://ia800206.us.archive.org/16/items/SilentRingtone/silence_64kb.mp3');
     this.safeSource = this.domSanitizer.bypassSecurityTrustResourceUrl(this.source);
-    //console.log('autoplay', this.autoplay);
   }
 
   ngAfterViewInit(): void {
@@ -49,33 +50,39 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.debugText = ` ${this.audioPlayer.nativeElement.muted} | ${this.audioPlayer.nativeElement.autoplay} | ${this.audioPlayer.nativeElement.loop} `
 
-    this.audioPlayer.nativeElement.addEventListener('click', this.playAudio.bind(this));
+    //window.addEventListener('scroll', this.playAudio.bind(this), { once: true });
     if (this.autoplay) {
-      //window.addEventListener('click', this.playAudio.bind(this));
-      setTimeout(() => {
-        //this.playElement.nativeElement.click();
-        //this.playAudio();
-      }, 1000);
+      this.playAudio();
     }
 
-    //this.audioPlayer.nativeElement.play();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes);
 
-    if (changes['autoplay']) {
-      //this.playAudio();
+    if (this.audioPlayer?.nativeElement && changes['playMusic']) {
+      this.playAudio();
     }
 
+    if (this.audioPlayer?.nativeElement && changes['autoplay']) {
+      this.playAudio();
+    }
+
+  }
+
+  ngOnDestroy() {
+    // Clean up the event listener
+    window.removeEventListener('scroll', this.onFirstScroll.bind(this));
+  }
+
+  onFirstScroll() {
+    // Show the play prompt when scroll is detected
+    this.showPlayPrompt = true;
   }
 
   // Play audio
   playAudio() {
     this.audioPlayer.nativeElement.muted = false;
-    //var context = new AudioContext();
-    //context.resume();
-    this.audioPlayer.nativeElement.load();
+
     this.audioPlayer.nativeElement.play().then(() => {
       this.audioPlayer.nativeElement.muted = false; // Unmute
     }).catch((error: any) => {
@@ -127,7 +134,6 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit, OnChanges {
 
   // Event when audio starts playing
   onPlay() {
-    //console.log('Audio started playing');
     this.state = 'playing';
   }
 
