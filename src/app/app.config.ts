@@ -6,6 +6,7 @@ import { IMAGE_CONFIG, registerLocaleData } from '@angular/common';
 import localeId from '@angular/common/locales/id';
 import localeIdExtra from '@angular/common/locales/extra/id';
 import { LoadingService } from './services/loading.service';
+import { customImageLoader, IMAGE_LOADER } from './services/image-loader.service';
 
 export const ENV = new InjectionToken<string>('ENV');
 export const CONFIG: object = environment;
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     { provide: ENV, useValue: CONFIG },
     { provide: LOCALE_ID, useValue: 'id-ID' },
     { provide: IMAGE_CONFIG, useValue: { disableImageSizeWarning: true, disableImageLazyLoadWarning: true } },
+    { provide: IMAGE_LOADER, useValue: customImageLoader },
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     importProvidersFrom(LoadingService),

@@ -1,10 +1,5 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { OpeningRemarksComponent } from "./main/opening-remarks/opening-remarks.component";
-import { WiseWordsOrPrayerComponent } from "./main/wise-words-or-prayer/wise-words-or-prayer.component";
-import { InvitationDetailsComponent } from "./main/invitation-details/invitation-details.component";
-import { WishesAndHopesComponent } from "./main/wishes-and-hopes/wishes-and-hopes.component";
-import { ClosingRemarksComponent } from "./main/closing-remarks/closing-remarks.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { MainComponent } from "./main/main.component";
@@ -23,7 +18,7 @@ import { WelcomeComponent } from './main/welcome/welcome.component';
       <app-welcome (onOpenInvitation)="onOpenInvitation()"></app-welcome>
     }
 
-    <app-header></app-header>
+    <!--<app-header></app-header>-->
 
     <app-main [isWelcomeClosed]="isWelcomeVisible"></app-main>
 
@@ -34,26 +29,29 @@ import { WelcomeComponent } from './main/welcome/welcome.component';
 export class AppComponent implements OnInit {
 
   private loadingService: LoadingService = inject(LoadingService);
-  isLoadingComplete = false;
-  title = 'my-wedding';
-  isWelcomeVisible = true;
+
+  title: string = 'my-wedding';
+  isLoadingComplete: boolean = false;
+  isWelcomeVisible: boolean = true;
+
   @ViewChild('audioPlayer') audioPlayer!: ElementRef;
 
   ngOnInit(): void {
     window.onload = () => {
       this.loadingService.setLoading(false);
       this.isLoadingComplete = true;
+      this.onShowWelcomeComponent();
     };
   }
 
-  showWelcomeComponent() {
+  private onShowWelcomeComponent(): void {
     // Delay showing the welcome component briefly to allow transition
     setTimeout(() => {
       this.isWelcomeVisible = true;
     }, 500); // Adjust timing as needed
   }
 
-  onOpenInvitation() {
+  public onOpenInvitation(): void {
     this.isWelcomeVisible = false;
     // Attempt to play audio after welcome closes
     //this.audioPlayer.nativeElement.play().catch((error: any) => {

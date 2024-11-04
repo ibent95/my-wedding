@@ -1,21 +1,17 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   template: `
-    <div class="intro-banner">
-      <h2 class="text-6xl tracking-wide fourth-text-color text-center">
-        Selamat datang
-        @if (true) {
-          , Ibnu & Dina
-        }
-      </h2>
+    <section class="intro-banner">
+      <h2 class="text-6xl tracking-wide fourth-text-color text-center" [innerHTML]="greetingMessage"></h2>
       <button type="button" role="button" class="appearance-none rounded-lg outline-double transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 m-4 p-3" (click)="openInvitation()">
         Buka Undangan
       </button>
-    </div>
+    </section>
   `,
   styles: `
     .intro-banner {
@@ -34,9 +30,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
     }
   `
 })
-export class WelcomeComponent {
+export class WelcomeComponent implements OnInit {
 
   @Output() onOpenInvitation: EventEmitter<void> = new EventEmitter<void>();
+
+  greetingMessage: string = 'Selamat datang';
+
+  ngOnInit(): void {
+    this.greetingMessage != ', Ibnu & Dina'
+  }
 
   public openInvitation(): void {
     this.onOpenInvitation.emit();

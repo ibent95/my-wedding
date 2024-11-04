@@ -1,4 +1,4 @@
-<header class="py-4">
+<header [ngClass]="{ 'visible': isAtTop, 'hidden': !isAtTop }" class="header py-4">
 
 	<!-- Main navigation container -->
 	<nav class="container flex-no-wrap relative flex w-full items-center justify-between py-2 md:flex-wrap md:justify-start lg:py-4">
