@@ -5,7 +5,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { MainComponent } from "./main/main.component";
 import { LoadingService } from './services/loading.service';
 import { LoadingScreenComponent } from "./shared/loading-screen/loading-screen.component";
-import { WelcomeComponent } from './main/welcome/welcome.component';
+import { WelcomeComponent } from './shared/welcome/welcome.component';
 
 @Component({
   selector: 'app-root',
