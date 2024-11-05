@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoadingService {
+
   private loading: boolean = true;
 
   isLoading(): boolean {
@@ -13,4 +14,5 @@ export class LoadingService {
   setLoading(loading: boolean) {
     this.loading = loading;
   }
+
 }

@@ -7,13 +7,11 @@ import { Component } from '@angular/core';
   template: `
     <footer class="content-end py-5">
       <div class="container flex flex-row justify-between">
-        <span class="fourth-text-color">Made with love, Ibnu & Dina.</span>
+        <span class="fourth-text-color">Made with love, Dina & Ibnu.</span>
         <span class="fourth-text-color">&copy; 2024.</span>
       </div>
     </footer>
   `,
   styles: []
 })
-export class FooterComponent {
-
-}
+export class FooterComponent { }

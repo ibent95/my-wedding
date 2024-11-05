@@ -18,7 +18,10 @@ import { WelcomeComponent } from './shared/welcome/welcome.component';
       <app-welcome (onOpenInvitation)="onOpenInvitation()"></app-welcome>
     }
 
-    <!--<app-header></app-header>-->
+    <!--
+      This header component is not used anymore
+      <app-header></app-header>
+    -->
 
     <app-main [isWelcomeClosed]="isWelcomeVisible"></app-main>
 
@@ -52,11 +55,11 @@ export class AppComponent implements OnInit {
   }
 
   public onOpenInvitation(): void {
+    /**
+     * Set variable value to false and send it
+     * to play music in the audio player
+     */
     this.isWelcomeVisible = false;
-    // Attempt to play audio after welcome closes
-    //this.audioPlayer.nativeElement.play().catch((error: any) => {
-    //  console.warn('Autoplay blocked; manual interaction required.', error);
-    //});
   }
 
 }

@@ -3,10 +3,7 @@ import { Injectable, InjectionToken } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ImageLoaderService {
-
-  constructor() { }
-}
+export class ImageLoaderService { }
 
 export const IMAGE_LOADER = new InjectionToken<(src: string, width: number) => string>('imageLoader');
 

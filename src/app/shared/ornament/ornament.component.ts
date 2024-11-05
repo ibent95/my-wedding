@@ -38,6 +38,7 @@ export type AppOrnamentColor =
   styles: [':ng-deep svg { min-width: 100% !important; width: auto !important; height: auto !important; }']
 })
 export class OrnamentComponent implements OnInit, AfterViewInit {
+
   @ViewChild('ornament', { static: true }) ornamentElement!: ElementRef;
   private renderer: Renderer2 = inject(Renderer2);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
@@ -89,8 +90,6 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
   private provideWidthFromInput(width: string | null, height: string | null): string | null {
     let results: 'auto' | string | null = width || null;
     const classWidthCondition: boolean =
-      //this.class.includes('w-') ||
-      //this.class.includes('min-w-') ||
       this.class.includes('h-') ||
       this.class.includes('min-h-');
 
@@ -104,8 +103,6 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
   private provideHeightFromInput(height: string | null, width: string | null): string | null {
     let results: 'auto' | string | null = height || null;
     const classHeightCondition: boolean =
-      //this.class.includes('h-') ||
-      //this.class.includes('min-h-') ||
       this.class.includes('w-') ||
       this.class.includes('min-w-');
 
@@ -142,7 +139,6 @@ export class OrnamentComponent implements OnInit, AfterViewInit {
   private initiateSvg() {
     this.loadSvg(`/assets/images/${this.type}-${this.position}.svg`).then((svg: any) => {
       this.sanitizedHTML = this.sanitizer.bypassSecurityTrustHtml(svg);
-      //this.ornamentElement.nativeElement.innerHTML = this.sanitizedHTML; // Not used anymore
 
       this.changeDetector.detectChanges();
 

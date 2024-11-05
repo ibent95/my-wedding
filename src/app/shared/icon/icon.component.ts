@@ -38,6 +38,7 @@ export type AppIconColor =
   styles: ``
 })
 export class IconComponent implements OnInit {
+
   @Input() name!: AppIconName;
   @Input() class!: string;
   @Input() size: number = 24;

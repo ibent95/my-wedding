@@ -17,7 +17,6 @@ import { AudioPlayerComponent } from "../shared/audio-player/audio-player.compon
   templateUrl: './main.component.html',
   styles: ['.scale-out { -webkit-animation: scale-out .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; animation: scale-out .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; } .scale-in { -webkit-animation: scale-in .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; animation: scale-in .2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; }']
 })
-// '.snap-scroller { height: 93vh; overflow-y: scroll; scroll-snap-type: y mandatory; section { scroll-snap-align: start; } }'
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   private document: Document = inject(DOCUMENT);
   private changeDetector = inject(ChangeDetectorRef)

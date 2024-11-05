@@ -7,7 +7,9 @@ import { OrnamentComponent } from '../../shared/ornament/ornament.component';
   standalone: true,
   imports: [CommonModule, OrnamentComponent],
   templateUrl: './opening-remarks.component.html',
-  styles: ["section { border: 8px double var(--third-color); border-radius: 1rem; }"]
+  styles: `
+    section { border: 8px double var(--third-color); border-radius: 1rem; }
+  `
 })
 export class OpeningRemarksComponent {
   @Input() id: string = 'openingRemarks';

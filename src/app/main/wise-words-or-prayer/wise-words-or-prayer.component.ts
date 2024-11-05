@@ -6,7 +6,7 @@ import { OrnamentComponent } from '../../shared/ornament/ornament.component';
   standalone: true,
   imports: [OrnamentComponent],
   templateUrl: './wise-words-or-prayer.component.html',
-  styles: []
+  styles: ``
 })
 export class WiseWordsOrPrayerComponent {
   @Input() id: string = 'wiseWordsOrPrayer';

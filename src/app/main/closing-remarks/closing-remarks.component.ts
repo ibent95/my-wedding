@@ -16,7 +16,7 @@ export type BankAccount = {
   standalone: true,
   imports: [IconComponent, ModalComponent, PopoverComponent, OrnamentComponent],
   templateUrl: './closing-remarks.component.html',
-  styles: ``, // ['section { min-height: 96vh; }']
+  styles: ``,
 })
 export class ClosingRemarksComponent {
   @Input() id: string = 'closingRemarks';
