@@ -35,7 +35,7 @@ export type AppOrnamentColor =
   standalone: true,
   imports: [CommonModule],
   templateUrl: './ornament.component.html',
-  styles: [':ng-deep svg { min-width: 100% !important; width: auto !important; height: auto !important; }']
+  styles: `:ng-deep svg { min-width: 100% !important; width: auto !important; height: auto !important; }`
 })
 export class OrnamentComponent implements OnInit, AfterViewInit {
 
