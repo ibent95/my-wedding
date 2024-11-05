@@ -127,6 +127,7 @@ export class PopoverComponent implements OnInit, AfterViewInit, OnChanges, OnDes
 
   public stopEvent(event: Event): void {
     event.stopPropagation();
+    this.closePopover();
   }
 
 }
