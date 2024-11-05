@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, input, OnInit } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-switch',
@@ -7,7 +8,7 @@ import { AfterViewInit, Component, Input, input, OnInit } from '@angular/core';
   imports: [CommonModule],
   template: `
     <label class="switch">
-      <input type="checkbox" checked>
+      <input type="checkbox" [id]="switchId" checked>
       <span class="slider round"></span>
     </label>
   `,
@@ -82,5 +83,14 @@ import { AfterViewInit, Component, Input, input, OnInit } from '@angular/core';
   `
 })
 export class SwitchComponent {
+
+  private utilsSvc: UtilsService = inject(UtilsService);
   @Input() data!: boolean;
+
+  switchId!: string;
+
+  constructor() {
+    this.switchId = this.utilsSvc.generateId();
+  }
+
 }

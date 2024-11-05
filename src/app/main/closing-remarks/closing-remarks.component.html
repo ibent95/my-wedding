@@ -45,7 +45,7 @@
 											<app-icon name="copy-alt" color="primary-inverse"></app-icon>
 										</button>
 
-										<app-popover [isOpen]="isPopoverOpen" (onClose)="onClosePopover(bankAccountIndex)" [id]="bankAccountIndex">
+										<app-popover [isOpen]="currentPopoverIndex === bankAccountIndex" (onClose)="closeCurrentPopover()" [id]="bankAccountIndex">
 											<p>{{ bankAccount.bankAccountNumber + ' tersalin!' }}</p>
 										</app-popover>
 									</td>
@@ -67,7 +67,7 @@
 
 					<strong>
 						Kontrakan pak Ngaliman, <br>
-						Jl. Raya Bakungan No. 000, Dusun Bakungan, <br>
+						Jl. Raya Bakungan No. 8, Dusun Bakungan, <br>
 						Kelurahan Wedomartani, Kecamatan Ngemplak, <br>
 						Kabupaten Sleman, Provinsi DI. Yogyakarta. <br>
 						Kode Pos: 55584

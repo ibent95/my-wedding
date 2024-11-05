@@ -1,9 +1,8 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import { IconComponent } from '../../shared/icon/icon.component';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { PopoverComponent } from '../../shared/popover/popover.component';
 import { OrnamentComponent } from "../../shared/ornament/ornament.component";
-import { PopoverService } from '../../shared/popover/popover.service';
 
 export type BankAccount = {
   bankName: string,
@@ -18,7 +17,10 @@ export type BankAccount = {
   templateUrl: './closing-remarks.component.html',
   styles: ``,
 })
-export class ClosingRemarksComponent {
+export class ClosingRemarksComponent implements OnInit {
+
+  private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
+
   @Input() id: string = 'closingRemarks';
   @Input() bankAccounts: Array<BankAccount> = [
     {
@@ -33,51 +35,65 @@ export class ClosingRemarksComponent {
     },
   ];
 
-  private popoverService: PopoverService = inject(PopoverService);
-
   isAccountNumberCopied: boolean = false;
   isModalOpen: boolean = false;
-  isPopoverOpen: boolean = false;
-  openPopovers: { [key: number]: boolean } = {}; // Tracks open state for each popover by index
+  currentPopoverIndex: number | null = null; // Tracks which popover is currently open
+  popoverTimeout: any = null; // Single timeout to handle all popovers
 
-  /**
-   * onCopyToClipboardClick
-   */
+  ngOnInit(): void {
+    this.currentPopoverIndex = null;
+  }
+
   public onCopyToClipboardClick(accountNumber: string, index: number): void {
 
     this.isAccountNumberCopied = false;
-    this.isPopoverOpen = true;
 
     navigator.clipboard.writeText(accountNumber).then(() => {
-      //this.isAccountNumberCopied = true;
-      //setTimeout(() => (this.isAccountNumberCopied = false), 2000); // Hide the success message after 2 seconds
-      //this.isPopoverOpen = true;
-      // Close other popovers
-      this.closeAllPopovers();
+      // Close any currently open popover
+      this.closeCurrentPopover();
 
-      // Open the current popover
-      this.openPopovers[index] = true;
+      // Set the new current popover index and update the view
+      this.currentPopoverIndex = index;
+      this.changeDetector.detectChanges();
+
+      // Set a new timeout to close the popover after 2 seconds
+      this.popoverTimeout = setTimeout(() => {
+        this.closeCurrentPopover();
+        this.changeDetector.detectChanges(); // Update the view again to close the popover
+
+      }, 2000); // 2000 milliseconds = 2 seconds
     }).catch(err => {
       console.error('Failed to copy: ', err);
     });
 
   }
 
-  //public onClosePopover(): void {
-  //  this.isPopoverOpen = false;
-  //  this.popoverService.closeActivePopover();
-  //}
+  public closeCurrentPopover(): void {
 
+    // Clear the existing timeout if it exists
+    if (this.popoverTimeout) {
+      clearTimeout(this.popoverTimeout);
+      this.popoverTimeout = null;
+    }
 
-  public closeAllPopovers() {
-    // Close all popovers
-    Object.keys(this.openPopovers).forEach(key => {
-      this.openPopovers[parseInt(key, 10)] = false;
-    });
+    // Close the currently open popover and update the view
+    this.currentPopoverIndex = null;
+
+    // Trigger change detection to close the popover
+    this.changeDetector.detectChanges();
+
   }
 
-  public onClosePopover(index: number) {
-    this.openPopovers[index] = false;
+  public onClosePopover(): void {
+
+    if (this.popoverTimeout) {
+      clearTimeout(this.popoverTimeout);
+    }
+
+    this.currentPopoverIndex = null;
+
+    this.changeDetector.detectChanges(); // Update the view
+
   }
 
   public openModal(): void {
