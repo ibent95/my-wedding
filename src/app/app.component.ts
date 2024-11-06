@@ -6,6 +6,7 @@ import { MainComponent } from "./main/main.component";
 import { LoadingService } from './services/loading.service';
 import { LoadingScreenComponent } from "./shared/loading-screen/loading-screen.component";
 import { WelcomeComponent } from './shared/welcome/welcome.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -31,13 +32,23 @@ import { WelcomeComponent } from './shared/welcome/welcome.component';
 })
 export class AppComponent implements OnInit {
 
+  private meta: Meta = inject(Meta);
+  private title: Title = inject(Title);
   private loadingService: LoadingService = inject(LoadingService);
 
-  title: string = 'my-wedding';
+  appTitle: string = 'Dina & Ibnu wedding invitation app.';
   isLoadingComplete: boolean = false;
   isWelcomeVisible: boolean = true;
 
   @ViewChild('audioPlayer') audioPlayer!: ElementRef;
+
+  constructor() {
+    this.title.setTitle(this.appTitle);
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Join us for our wedding celebration on December, 2nd 2024.'
+    });
+  }
 
   ngOnInit(): void {
     window.onload = () => {
