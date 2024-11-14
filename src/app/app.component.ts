@@ -30,7 +30,7 @@ import { Meta, Title } from '@angular/platform-browser';
   `,
   styles: ``
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
   private meta: Meta = inject(Meta);
   private title: Title = inject(Title);
@@ -52,39 +52,42 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    window.onload = () => {
-      this.loadingService.setLoading(false);
-      this.changeDetector.detectChanges()
+    //window.onload = () => {
+    //  this.loadingService.setLoading(false);
+    //  this.changeDetector.detectChanges()
 
-      if (!this.loadingService.isLoading()) {
-        this.isLoadingComplete = true;
-        this.onShowWelcomeComponent();
-      }
-    };
-  }
+    //  if (!this.loadingService.isLoading()) {
+    //    this.isLoadingComplete = true;
+    //    this.onShowWelcomeComponent();
+    //  }
+    //  console.log('1 -> ngOnInit');
+    //};
 
-  ngAfterViewInit(): void {
     window.addEventListener('load', () => {
       setTimeout(() => { // Add a slight delay to ensure all assets are ready
         this.loadingService.setLoading(false);
-        this.changeDetector.detectChanges()
 
-        if (!this.loadingService.isLoading()) {
+        if (!this.isLoadingComplete) {
           this.isLoadingComplete = true;
           this.onShowWelcomeComponent();
         }
+
+        this.changeDetector.detectChanges();
+        console.log('1 -> ngOnInit');
       }, 100); // Adjust the delay as needed (e.g., 100ms)
     });
 
     // Fallback to ensure the loading screen disappears after a max timeout
     setTimeout(() => {
       this.loadingService.setLoading(false);
-      this.changeDetector.detectChanges()
 
-      if (!this.loadingService.isLoading()) {
+      if (!this.isLoadingComplete) {
         this.isLoadingComplete = true;
         this.onShowWelcomeComponent();
       }
+
+      this.changeDetector.detectChanges();
+      console.log('2 -> ngOnInit setTimeout');
     }, 7000); // Adjust this timeout value as needed (e.g., 5000ms for 5 seconds)
   }
 
@@ -92,6 +95,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Delay showing the welcome component briefly to allow transition
     setTimeout(() => {
       this.isWelcomeVisible = true;
+      console.log('4 -> onShowWelcomeComponent setTimeout');
     }, 500); // Adjust timing as needed
   }
 
