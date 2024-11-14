@@ -73,7 +73,6 @@ export class AppComponent implements OnInit {
         }
 
         this.changeDetector.detectChanges();
-        console.log('1 -> ngOnInit');
       }, 100); // Adjust the delay as needed (e.g., 100ms)
     });
 
@@ -87,7 +86,6 @@ export class AppComponent implements OnInit {
       }
 
       this.changeDetector.detectChanges();
-      console.log('2 -> ngOnInit setTimeout');
     }, 7000); // Adjust this timeout value as needed (e.g., 5000ms for 5 seconds)
   }
 
@@ -95,7 +93,6 @@ export class AppComponent implements OnInit {
     // Delay showing the welcome component briefly to allow transition
     setTimeout(() => {
       this.isWelcomeVisible = true;
-      console.log('4 -> onShowWelcomeComponent setTimeout');
     }, 500); // Adjust timing as needed
   }
 
