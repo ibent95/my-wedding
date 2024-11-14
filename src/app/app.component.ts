@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
@@ -35,6 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   private meta: Meta = inject(Meta);
   private title: Title = inject(Title);
   private loadingService: LoadingService = inject(LoadingService);
+  private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   appTitle: string = 'Dina & Ibnu wedding invitation app.';
   isLoadingComplete: boolean = false;
@@ -53,8 +54,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     window.onload = () => {
       this.loadingService.setLoading(false);
+      this.changeDetector.detectChanges()
 
-      if (!this.isLoadingComplete) {
+      if (!this.loadingService.isLoading()) {
         this.isLoadingComplete = true;
         this.onShowWelcomeComponent();
       }
@@ -65,8 +67,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     window.addEventListener('load', () => {
       setTimeout(() => { // Add a slight delay to ensure all assets are ready
         this.loadingService.setLoading(false);
+        this.changeDetector.detectChanges()
 
-        if (!this.isLoadingComplete) {
+        if (!this.loadingService.isLoading()) {
           this.isLoadingComplete = true;
           this.onShowWelcomeComponent();
         }
@@ -76,12 +79,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Fallback to ensure the loading screen disappears after a max timeout
     setTimeout(() => {
       this.loadingService.setLoading(false);
+      this.changeDetector.detectChanges()
 
-      if (!this.isLoadingComplete) {
+      if (!this.loadingService.isLoading()) {
         this.isLoadingComplete = true;
         this.onShowWelcomeComponent();
       }
-    }, 5000); // Adjust this timeout value as needed (e.g., 5000ms for 5 seconds)
+    }, 7000); // Adjust this timeout value as needed (e.g., 5000ms for 5 seconds)
   }
 
   private onShowWelcomeComponent(): void {
