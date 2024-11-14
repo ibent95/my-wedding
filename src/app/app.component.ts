@@ -53,8 +53,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     window.onload = () => {
       this.loadingService.setLoading(false);
-      this.isLoadingComplete = true;
-      this.onShowWelcomeComponent();
+
+      if (!this.isLoadingComplete) {
+        this.isLoadingComplete = true;
+        this.onShowWelcomeComponent();
+      }
     };
   }
 
@@ -62,16 +65,22 @@ export class AppComponent implements OnInit, AfterViewInit {
     window.addEventListener('load', () => {
       setTimeout(() => { // Add a slight delay to ensure all assets are ready
         this.loadingService.setLoading(false);
-        this.isLoadingComplete = true;
-        this.onShowWelcomeComponent();
+
+        if (!this.isLoadingComplete) {
+          this.isLoadingComplete = true;
+          this.onShowWelcomeComponent();
+        }
       }, 100); // Adjust the delay as needed (e.g., 100ms)
     });
 
     // Fallback to ensure the loading screen disappears after a max timeout
     setTimeout(() => {
       this.loadingService.setLoading(false);
-      this.isLoadingComplete = true;
-      this.onShowWelcomeComponent();
+
+      if (!this.isLoadingComplete) {
+        this.isLoadingComplete = true;
+        this.onShowWelcomeComponent();
+      }
     }, 5000); // Adjust this timeout value as needed (e.g., 5000ms for 5 seconds)
   }
 
