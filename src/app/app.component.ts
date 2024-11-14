@@ -1,6 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./header/header.component";
+import { ChangeDetectorRef, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { FooterComponent } from "./footer/footer.component";
 import { MainComponent } from "./main/main.component";
 import { LoadingService } from './services/loading.service';
@@ -11,7 +9,7 @@ import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoadingScreenComponent, WelcomeComponent, HeaderComponent, MainComponent, FooterComponent],
+  imports: [LoadingScreenComponent, WelcomeComponent, MainComponent, FooterComponent],
   template: `
     <app-loading-screen></app-loading-screen>
 
