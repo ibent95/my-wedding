@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
@@ -30,7 +30,7 @@ import { Meta, Title } from '@angular/platform-browser';
   `,
   styles: ``
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   private meta: Meta = inject(Meta);
   private title: Title = inject(Title);
@@ -56,6 +56,23 @@ export class AppComponent implements OnInit {
       this.isLoadingComplete = true;
       this.onShowWelcomeComponent();
     };
+  }
+
+  ngAfterViewInit(): void {
+    window.addEventListener('load', () => {
+      setTimeout(() => { // Add a slight delay to ensure all assets are ready
+        this.loadingService.setLoading(false);
+        this.isLoadingComplete = true;
+        this.onShowWelcomeComponent();
+      }, 100); // Adjust the delay as needed (e.g., 100ms)
+    });
+
+    // Fallback to ensure the loading screen disappears after a max timeout
+    setTimeout(() => {
+      this.loadingService.setLoading(false);
+      this.isLoadingComplete = true;
+      this.onShowWelcomeComponent();
+    }, 5000); // Adjust this timeout value as needed (e.g., 5000ms for 5 seconds)
   }
 
   private onShowWelcomeComponent(): void {
