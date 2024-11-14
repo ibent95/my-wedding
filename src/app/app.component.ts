@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { FooterComponent } from "./footer/footer.component";
 import { MainComponent } from "./main/main.component";
 import { LoadingService } from './services/loading.service';
@@ -28,7 +28,7 @@ import { Meta, Title } from '@angular/platform-browser';
   `,
   styles: ``
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
 
   private meta: Meta = inject(Meta);
   private title: Title = inject(Title);
@@ -49,32 +49,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    //window.onload = () => {
-    //  this.loadingService.setLoading(false);
-    //  this.changeDetector.detectChanges()
-
-    //  if (!this.loadingService.isLoading()) {
-    //    this.isLoadingComplete = true;
-    //    this.onShowWelcomeComponent();
-    //  }
-    //  console.log('1 -> ngOnInit');
-    //};
-
-    window.addEventListener('load', () => {
-      setTimeout(() => { // Add a slight delay to ensure all assets are ready
-        this.loadingService.setLoading(false);
-
-        if (!this.isLoadingComplete) {
-          this.isLoadingComplete = true;
-          this.onShowWelcomeComponent();
-        }
-
-        this.changeDetector.detectChanges();
-      }, 100); // Adjust the delay as needed (e.g., 100ms)
-    });
-
-    // Fallback to ensure the loading screen disappears after a max timeout
+  ngAfterViewInit(): void {
     setTimeout(() => {
       this.loadingService.setLoading(false);
 
@@ -84,7 +59,7 @@ export class AppComponent implements OnInit {
       }
 
       this.changeDetector.detectChanges();
-    }, 7000); // Adjust this timeout value as needed (e.g., 5000ms for 5 seconds)
+    }, 7000);
   }
 
   private onShowWelcomeComponent(): void {
